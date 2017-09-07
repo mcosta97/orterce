@@ -1,0 +1,13 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<head runat="server">
+    <title>Orterce</title>
+    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        <h1>Orterce</h1>
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <asp:ContentPlaceHolder id="titulo" runat="server">
+    </asp:ContentPlaceHolder>
+</body>
