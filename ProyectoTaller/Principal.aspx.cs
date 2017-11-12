@@ -13,11 +13,12 @@ using System.Web.UI.WebControls;
 public partial class Principal : System.Web.UI.Page {
     protected void Page_Load(object sender, EventArgs e) {
         AgregarCategorias();
-        MostrarPromocionados();
 
         int id = Convert.ToInt32(Request.QueryString["Id"]);
         if(id > 0) {
             TraerProductos(obCategoria.CargarProductos(id));
+        } else {
+            MostrarPromocionados();
         }
     }
 
