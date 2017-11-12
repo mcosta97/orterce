@@ -4,67 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    class PedidoEntity
-    {
+namespace ProyectoTallerEntity {
+    public class PedidoEntity {
         private int idpedido;
         private int idcliente;
+        private int estado;
         private Nullable<DateTime> fecha;
         private List<DetalleEntity> detalles;
 
-        public PedidoEntity()
-        {
+        public PedidoEntity() {
             IdPedido = 0;
             IdCliente = 0;
+            Estado = 0;
             Fecha = null;
-            Detalles = null;
+            Detalles = new List<DetalleEntity>();
         }
 
-        public int IdPedido
-        {
-            get
-            {
+        public int Estado {
+            get {
+                return estado;
+            }
+            set {
+                estado = value;
+            }
+        }
+
+        public int IdPedido {
+            get {
                 return idpedido;
             }
-            set
-            {
+            set {
                 idpedido = value;
             }
         }
 
-        public int IdCliente
-        {
-            get
-            {
+        public int IdCliente {
+            get {
                 return idcliente;
             }
-            set
-            {
+            set {
                 idcliente = value;
             }
         }
 
-        public Nullable<DateTime> Fecha
-        {
-            get
-            {
+        public Nullable<DateTime> Fecha {
+            get {
                 return fecha;
             }
-            set
-            {
+            set {
                 fecha = value;
             }
         }
 
-        public List<DetalleEntity> Detalles
-        {
-            get
-            {
+        public List<DetalleEntity> Detalles {
+            get {
                 return detalles;
             }
-            set
-            {
+            set {
                 detalles = value;
             }
         }

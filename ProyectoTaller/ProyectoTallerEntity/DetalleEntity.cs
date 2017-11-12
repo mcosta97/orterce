@@ -4,53 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    class DetalleEntity
-    {
+namespace ProyectoTallerEntity {
+    public class DetalleEntity {
         private int iddetalle;
+        private int idpedido;
         private int idproducto;
         private int cantidad;
 
-        public DetalleEntity()
-        {
+        public DetalleEntity() {
             iddetalle = 0;
+            idpedido = 0;
             idproducto = 0;
             cantidad = 0;
         }
 
-        public int IdDetalle
-        {
-            get
-            {
+        public int IdPedido {
+            get {
+                return idpedido;
+            }
+            set {
+                idpedido = value;
+            }
+        }
+
+        public int IdDetalle {
+            get {
                 return iddetalle;
             }
-            set
-            {
+            set {
                 iddetalle = value;
             }
         }
 
-        public int IdProducto
-        {
-            get
-            {
+        public int IdProducto {
+            get {
                 return idproducto;
             }
-            set
-            {
+            set {
                 idproducto = value;
             }
         }
 
-        public int Cantidad
-        {
-            get
-            {
+        public int Cantidad {
+            get {
                 return cantidad;
             }
-            set
-            {
+            set {
                 cantidad = value;
             }
         }

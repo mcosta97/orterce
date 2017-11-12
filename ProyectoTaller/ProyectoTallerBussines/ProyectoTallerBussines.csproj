@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mercadopago">
+      <HintPath>..\Bin\mercadopago.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,11 +46,26 @@
     <Compile Include="obCliente.cs" />
     <Compile Include="obCategoria.cs" />
     <Compile Include="obAdministrativo.cs" />
+    <Compile Include="obCobranza.cs" />
     <Compile Include="obDetalle.cs" />
     <Compile Include="obPedido.cs" />
     <Compile Include="obProducto.cs" />
     <Compile Include="obUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoTallerDataODBC\ProyectoTallerDataODBC.csproj">
+      <Project>{719E55D2-C0D9-4844-8734-A627B07CE460}</Project>
+      <Name>ProyectoTallerDataODBC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProyectoTallerData\ProyectoTallerData.csproj">
+      <Project>{b9dedc68-e5dc-4e52-a2f8-91408e545cdb}</Project>
+      <Name>ProyectoTallerData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProyectoTallerEntity\ProyectoTallerEntity.csproj">
+      <Project>{4479a8e7-911c-4592-9ed6-82bf58080ce9}</Project>
+      <Name>ProyectoTallerEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

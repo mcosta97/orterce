@@ -2,12 +2,61 @@
 
 <head runat="server">
     <title>Orterce</title>
-    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        <h1>Orterce</h1>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
 <body>
-    <asp:ContentPlaceHolder id="titulo" runat="server">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Principal.aspx">Orterce</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <!-- class="active" -->
+            </ul>
+            <ul runat="server" id="logged" class="nav navbar-nav navbar-right">
+                <li runat="server" id="admenu" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administracion<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="AbmUsuarios.aspx">Usuarios</a></li>
+                        <li><a href="AbmCategorias.aspx">Categorias</a></li>
+                        <li><a href="AbmProductos.aspx">Productos</a></li>
+                        <li><a href="AbmPedidos.aspx">Pedidos</a></li>
+                    </ul>
+                </li>
+
+                <li runat="server" id="carrito" class="nav navbar-nav navbar-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Carrito</a>
+                    <asp:Repeater runat="server" ID="items">
+                        <HeaderTemplate><ul class="dropdown-menu"></HeaderTemplate>
+                        <ItemTemplate>
+                            <li><a href="Producto.aspx?Id=<%# Eval("idproducto")%>">
+                                <img class="img-circle" style="width:50px; height:50px" src="<%# Eval("imagen")%>" />  <%# Eval("nombre")%> (<%# Eval("cantidad")%>)
+                            </a></li>
+                            <li class="divider"></li>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <a href="Carrito.aspx">Ver pedido</a>
+                            </ul>
+                        </FooterTemplate>
+                    </asp:Repeater>
+                </li>
+
+                <li><a href="PerfilUsuario.aspx"><span class="glyphicon glyphicon-user"></span> Mi perfil</a></li>
+
+                <li><a href="Logout.aspx"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+            </ul>
+            <ul runat="server" id="login" class="nav navbar-nav navbar-right">
+                <li><a href="Login.aspx"><span class="glyphicon glyphicon-user"></span> Ingresar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <asp:ContentPlaceHolder ID="generico" runat="server">
     </asp:ContentPlaceHolder>
 </body>

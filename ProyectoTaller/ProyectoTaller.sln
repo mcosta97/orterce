@@ -1,11 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ProyectoTaller", "F:\Contenido\ORT\Taller de computacion 4\ProyectoTaller\", "{CC115B09-5E75-4CED-981B-00E97C235025}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerBussines", "ProyectoTallerBussines\ProyectoTallerBussines.csproj", "{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerData", "ProyectoTallerData\ProyectoTallerData.csproj", "{B9DEDC68-E5DC-4E52-A2F8-91408E545CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerDataODBC", "ProyectoTallerDataODBC\ProyectoTallerDataODBC.csproj", "{719E55D2-C0D9-4844-8734-A627B07CE460}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerEntity", "ProyectoTallerEntity\ProyectoTallerEntity.csproj", "{4479A8E7-911C-4592-9ED6-82BF58080CE9}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ProyectoTaller", ".", "{CC115B09-5E75-4CED-981B-00E97C235025}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		ProjectReferences = "{4479a8e7-911c-4592-9ed6-82bf58080ce9}|ProyectoTallerEntity.dll;{a925dba4-04a8-4198-88d0-0cdcadce5ea2}|ProyectoTallerBussines.dll;{719E55D2-C0D9-4844-8734-A627B07CE460}|ProyectoTallerDataODBC.dll;{B9DEDC68-E5DC-4E52-A2F8-91408E545CDB}|ProyectoTallerData.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_1354"
 		Debug.AspNetCompiler.PhysicalPath = "..\ProyectoTaller\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1354\"
@@ -22,16 +31,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ProyectoTaller", "F:\Conten
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "1354"
 		SlnRelativePath = "..\ProyectoTaller\"
-		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerBussines", "ProyectoTallerBussines\ProyectoTallerBussines.csproj", "{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerData", "ProyectoTallerData\ProyectoTallerData.csproj", "{B9DEDC68-E5DC-4E52-A2F8-91408E545CDB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerDataODBC", "ProyectoTallerDataODBC\ProyectoTallerDataODBC.csproj", "{719E55D2-C0D9-4844-8734-A627B07CE460}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerEntity", "ProyectoTallerEntity\ProyectoTallerEntity.csproj", "{4479A8E7-911C-4592-9ED6-82BF58080CE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,10 +39,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +55,10 @@ Global
 		{4479A8E7-911C-4592-9ED6-82BF58080CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4479A8E7-911C-4592-9ED6-82BF58080CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4479A8E7-911C-4592-9ED6-82BF58080CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

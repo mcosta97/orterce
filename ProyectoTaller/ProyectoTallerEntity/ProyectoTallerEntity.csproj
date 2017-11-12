@@ -45,7 +45,9 @@
     <Compile Include="ClienteEntity.cs" />
     <Compile Include="DetalleEntity.cs" />
     <Compile Include="DireccionEntity.cs" />
+    <Compile Include="LocalidadEntity.cs" />
     <Compile Include="PedidoEntity.cs" />
+    <Compile Include="ProvinciaEntity.cs" />
     <Compile Include="TelefonoEntity.cs" />
     <Compile Include="UsuarioEntity.cs" />
     <Compile Include="ProductoEntity.cs" />

@@ -40,15 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="odAdministrativo.cs" />
-    <Compile Include="odCategoria.cs" />
-    <Compile Include="odCliente.cs" />
-    <Compile Include="odDetalle.cs" />
-    <Compile Include="odDireccion.cs" />
-    <Compile Include="odPedido.cs" />
-    <Compile Include="odProducto.cs" />
-    <Compile Include="odTelefono.cs" />
-    <Compile Include="odUsuario.cs" />
+    <Compile Include="daComun.cs" />
+    <Compile Include="daException.cs" />
+    <Compile Include="daUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

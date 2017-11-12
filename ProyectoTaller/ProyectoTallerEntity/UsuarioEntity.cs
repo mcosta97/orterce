@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoTallerEntity
 {
-    class UsuarioEntity
+    public class UsuarioEntity
     {
         private int idusuario;
         private string usuario;
@@ -95,6 +91,16 @@ namespace ProyectoTallerEntity
             {
                 mail = value;
             }
+        }
+
+        public bool TieneEmail()
+        {
+            return (mail != null);
+        }
+
+        public void BlanquearEmail()
+        {
+            mail = null;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoTallerEntity
 {
-    class CategoriaEntity
+    public class CategoriaEntity
     {
         private int idcategoria;
         private string nombre;

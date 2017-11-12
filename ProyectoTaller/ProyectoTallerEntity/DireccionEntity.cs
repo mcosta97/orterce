@@ -1,20 +1,26 @@
 ﻿namespace ProyectoTallerEntity
 {
-    class DireccionEntity
+    public class DireccionEntity
     {
         private int iddireccion;
-        private int idcliente;
+        private ClienteEntity cliente;
         private string direccion;
-        private string localidad;
-        private string provincia;
+        private int altura;
+        private string piso;
+        private string dpto;
+        private LocalidadEntity localidad;
+        private ProvinciaEntity provincia;
 
         public DireccionEntity()
         {
             IdDireccion = 0;
-            IdCliente = 0;
+            Cliente = null;
             Direccion = "";
-            Localidad = "";
-            Provincia = "";
+            Localidad = null;
+            Provincia = null;
+            Altura = 0;
+            Piso = "";
+            Dpto = "";
         }
 
         public int IdDireccion
@@ -29,15 +35,15 @@
             }
         }
 
-        public int IdCliente
+        public ClienteEntity Cliente
         {
             get
             {
-                return idcliente;
+                return cliente;
             }
             set
             {
-                idcliente = value;
+                cliente = value;
             }
         }
 
@@ -53,7 +59,7 @@
             }
         }
 
-        public string Localidad
+        public LocalidadEntity Localidad
         {
             get
             {
@@ -65,7 +71,7 @@
             }
         }
 
-        public string Provincia
+        public ProvinciaEntity Provincia
         {
             get
             {
@@ -74,6 +80,33 @@
             set
             {
                 provincia = value;
+            }
+        }
+
+        public int Altura {
+            get {
+                return altura;
+            }
+            set {
+                altura = value;
+            }
+        }
+
+        public string Piso {
+            get {
+                return piso;
+            }
+            set {
+                piso = value;
+            }
+        }
+
+        public string Dpto {
+            get {
+                return dpto;
+            }
+            set {
+                dpto = value;
             }
         }
     }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    public class ProductoEntity
-    {
+namespace ProyectoTallerEntity {
+    public class ProductoEntity {
         private int idproducto;
+        private int idcategoria;
         private string nombre;
         private string descripcion;
         private double precio;
@@ -18,10 +17,11 @@ namespace ProyectoTallerEntity
         private string color;
         private string modelo;
         private string medida;
+        private string imagen;
 
-        public ProductoEntity()
-        {
+        public ProductoEntity() {
             IdProducto = 0;
+            idcategoria = 0;
             Nombre = "";
             Descripcion = "";
             Precio = 0.0d;
@@ -31,126 +31,67 @@ namespace ProyectoTallerEntity
             Color = "";
             Modelo = "";
             Medida = "";
+            Imagen = "";
         }
 
-        public int IdProducto
-        {
-            get
-            {
-                return idproducto;
-            }
-            set
-            {
-                idproducto = value;
-            }
+        public int IdProducto {
+            get { return idproducto; }
+            set { idproducto = value; }
         }
 
-        public string Nombre
-        {
-            get
-            {
-                return nombre;
-            }
-            set
-            {
-                nombre = value.Trim();
-            }
+        public int IdCategoria {
+            get { return idcategoria; }
+            set { idcategoria = value; }
         }
 
-        public string Descripcion
-        {
-            get
-            {
-                return descripcion;
-            }
-            set
-            {
-                descripcion = value.Trim();
-            }
+        public string Nombre {
+            get {return nombre;}
+            set {nombre = value.Trim();}
         }
 
-        public double Precio
-        {
-            get
-            {
-                return precio;
-            }
-            set
-            {
-                precio = value;
-            }
+        public string Imagen {
+            get {return imagen;}
+            set {imagen = value;}
         }
 
-        public double Iva
-        {
-            get
-            {
-                return iva;
-            }
-            set
-            {
-                iva = value;
-            }
+        public string Descripcion {
+            get {return descripcion;}
+            set {descripcion = value.Trim();}
         }
 
-        public int Stock
-        {
-            get
-            {
-                return stock;
-            }
-            set
-            {
-                stock = value;
-            }
+        public double Precio {
+            get {return precio;}
+            set {precio = value;}
         }
 
-        public int Peso
-        {
-            get
-            {
-                return peso;
-            }
-            set
-            {
-                peso = value;
-            }
+        public double Iva {
+            get {return iva;}
+            set {iva = value;}
         }
 
-        public string Color
-        {
-            get
-            {
-                return color;
-            }
-            set
-            {
-                color = value.Trim();
-            }
+        public int Stock {
+            get {return stock;}
+            set {stock = value;}
         }
 
-        public string Modelo
-        {
-            get
-            {
-                return modelo;
-            }
-            set
-            {
-                modelo = value.Trim();
-            }
+        public int Peso {
+            get {return peso;}
+            set {peso = value;}
         }
 
-        public string Medida
-        {
-            get
-            {
-                return medida;
-            }
-            set
-            {
-                medida = value.Trim();
-            }
+        public string Color {
+            get {return color;}
+            set {color = value.Trim();}
+        }
+
+        public string Modelo {
+            get {return modelo;}
+            set {modelo = value.Trim();}
+        }
+
+        public string Medida {
+            get {return medida;}
+            set {medida = value.Trim();}
         }
     }
 }

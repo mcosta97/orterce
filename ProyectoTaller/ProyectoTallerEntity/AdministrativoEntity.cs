@@ -4,25 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    class AdministrativoEntity : UsuarioEntity
-    {
+namespace ProyectoTallerEntity {
+    public class AdministrativoEntity : UsuarioEntity {
+        private int idadministrativo;
         private int acceso;
 
-        public AdministrativoEntity()
-        {
-            acceso = 0;
+        public AdministrativoEntity() {
+            Acceso = 0;
+            IdAdministrativo = 0;
         }
 
-        public int Acceso
-        {
-            get
-            {
+        public int IdAdministrativo {
+            get {
+                return idadministrativo;
+            }
+            set {
+                idadministrativo = value;
+            }
+        }
+
+        public int Acceso {
+            get {
                 return acceso;
             }
-            set
-            {
+            set {
                 acceso = value;
             }
         }

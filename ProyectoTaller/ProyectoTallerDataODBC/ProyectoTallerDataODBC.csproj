@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>719e55d2-c0d9-4844-8734-a627b07ce460</ProjectGuid>
+    <ProjectGuid>{719E55D2-C0D9-4844-8734-A627B07CE460}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ProyectoTallerDataODBC</RootNamespace>
@@ -30,24 +30,41 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="daAdministrativo.cs" />
+    <Compile Include="daCategoria.cs" />
+    <Compile Include="daCliente.cs" />
+    <Compile Include="daConexion.cs" />
+    <Compile Include="daContadores.cs" />
+    <Compile Include="daDetalle.cs" />
+    <Compile Include="daDireccion.cs" />
+    <Compile Include="daLocalidad.cs" />
+    <Compile Include="daPedido.cs" />
+    <Compile Include="daProducto.cs" />
+    <Compile Include="daProvincia.cs" />
+    <Compile Include="daTelefono.cs" />
+    <Compile Include="daUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProyectoTallerData\ProyectoTallerData.csproj">
+      <Project>{b9dedc68-e5dc-4e52-a2f8-91408e545cdb}</Project>
+      <Name>ProyectoTallerData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ProyectoTallerEntity\ProyectoTallerEntity.csproj">
+      <Project>{4479a8e7-911c-4592-9ed6-82bf58080ce9}</Project>
+      <Name>ProyectoTallerEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +74,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>
