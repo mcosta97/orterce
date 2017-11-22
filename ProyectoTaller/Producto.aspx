@@ -9,15 +9,10 @@
                 </div>
 
                 <div class="col-md-6 titulo-producto">
-                    <asp:Label runat="server" Font-Size="XX-Large" ID="titulo"></asp:Label>
-                    <br>
-                    <asp:Label runat="server" Font-Size="Large" ID="modelo"></asp:Label>
-                    <br>
-                    <asp:Label runat="server" ID="stock"></asp:Label>
-                    <br>
-                    <br>
-                    <asp:Label runat="server" Font-Size="Large" ID="precio"></asp:Label>
-                    <br>
+                    <asp:Label runat="server" Font-Size="XX-Large" ID="titulo"></asp:Label><br>
+                    <asp:Label runat="server" Font-Size="Large" ID="modelo"></asp:Label><br>
+                    <asp:Label runat="server" ID="stock"></asp:Label><br><br>
+                    <asp:Label runat="server" Font-Size="Large" ID="precio"></asp:Label><br>
                     <asp:Label runat="server" Font-Size="Small" ID="iva"></asp:Label>
 
                     <div class="row" style="margin-top:30px">
@@ -27,12 +22,9 @@
                 </div>
             </div>
             <div class="container descripcion-producto">
-                <asp:Label runat="server" ID="descripcion"></asp:Label>
-                <br>
-                <asp:Label runat="server" ID="color"></asp:Label>
-                <br>
-                <asp:Label runat="server" ID="medidas"></asp:Label>
-                <br>
+                <asp:Label runat="server" ID="descripcion"></asp:Label><br>
+                <asp:Label runat="server" ID="color"></asp:Label><br>
+                <asp:Label runat="server" ID="medidas"></asp:Label><br>
                 <asp:Label runat="server" ID="peso"></asp:Label>
             </div>
         </form>

@@ -23,3 +23,15 @@ F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerBussines\o
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.dll
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.pdb
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerBussines\bin\Debug\mercadopago.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerBussines.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerBussines.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\mercadopago.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerEntity.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerEntity.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.pdb

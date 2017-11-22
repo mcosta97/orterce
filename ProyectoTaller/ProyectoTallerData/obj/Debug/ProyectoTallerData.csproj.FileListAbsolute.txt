@@ -14,3 +14,8 @@ F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerData\bin\D
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.dll
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.pdb
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerData\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerData\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.pdb

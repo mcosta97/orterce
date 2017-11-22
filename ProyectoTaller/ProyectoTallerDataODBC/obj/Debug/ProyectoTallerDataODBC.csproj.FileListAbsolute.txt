@@ -26,3 +26,12 @@ F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerDataODBC\b
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.csprojResolveAssemblyReference.cache
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.dll
 F:\Contenido\ORT\Taller de Computacion 4\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerEntity.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerEntity.pdb
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.pdb
