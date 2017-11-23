@@ -16,6 +16,7 @@ public partial class Login : System.Web.UI.Page {
             if (admin.IdAdministrativo != 0) {
                 this.Session["UserID"] = admin;
             } else {
+                this.Session["UserID"] = usuario;
                 this.Session["PedID"] = obPedido.ObtenerCarritoUsuario(usuario.IdUsuario);
             }
 

@@ -11,6 +11,7 @@ namespace ProyectoTallerEntity {
         private int estado;
         private Nullable<DateTime> fecha;
         private List<DetalleEntity> detalles;
+        private double total;
 
         public PedidoEntity() {
             IdPedido = 0;
@@ -18,6 +19,7 @@ namespace ProyectoTallerEntity {
             Estado = 0;
             Fecha = null;
             Detalles = new List<DetalleEntity>();
+            Total = 0.0d;
         }
 
         public int Estado {
@@ -62,6 +64,18 @@ namespace ProyectoTallerEntity {
             }
             set {
                 detalles = value;
+            }
+        }
+
+        public double Total
+        {
+            get
+            {
+                return total;
+            }
+            set
+            {
+                total = value;
             }
         }
     }

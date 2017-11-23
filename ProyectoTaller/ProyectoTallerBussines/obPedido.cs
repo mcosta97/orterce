@@ -66,6 +66,7 @@ namespace ProyectoTallerBussines {
         public static void AgregarProducto(DetalleEntity detalle, PedidoEntity pedido) {
             if(pedido != null && detalle != null) {
                 pedido.Detalles.Add(detalle);
+                pedido.Total += detalle.Cantidad * obProducto.CalcularPrecioIva(obProducto.CargarProducto(detalle.IdProducto));
                 new daPedido().Actualizar(pedido);
             }
         }

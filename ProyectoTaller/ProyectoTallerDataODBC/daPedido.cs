@@ -26,6 +26,7 @@ namespace ProyectoTallerData {
             entidad.Fecha = Convert.ToDateTime(dr["Fecha"]);
             entidad.Estado = Convert.ToInt32(dr["Estado"]);
             entidad.Detalles = new daDetalle().ObtenerDetallesPorPedido(entidad.IdPedido);
+            entidad.Total = Convert.ToDouble(dr["Total"]);
             return entidad;
         }
 
@@ -43,6 +44,9 @@ namespace ProyectoTallerData {
 
             parameter = command.Parameters.Add("?", OdbcType.VarChar);
             parameter.Value = entidad.Estado;
+
+            parameter = command.Parameters.Add("?", OdbcType.Double);
+            parameter.Value = entidad.Total;
         }
 
         private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, PedidoEntity entidad) {

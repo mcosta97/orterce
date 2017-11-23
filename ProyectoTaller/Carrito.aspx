@@ -18,7 +18,7 @@
             </ItemTemplate>
         </asp:Repeater>
         <br>
-        <h3 runat="server" id="total">Total: $XXX</h3>
+        <h3 runat="server" id="total">Total: $0</h3>
         <form runat="server">
             <asp:Button runat="server" Text="Procesar pedido" CssClass="btn btn-success"/>
         </form>
