@@ -4,14 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoTallerData {
     public class daUsuario {
         private const string SQLSearchByPrimaryKey = "SELECT * FROM Usuarios WHERE IdUsuario = ?";
-        private const string SQLSearch = "SELECT * FROM Usuarios WHERE IdUsuario LIKE ? AND Apellido LIKE ? AND Nombre LIKE ?";
+        private const string SQLSearch = "SELECT * FROM Usuarios WHERE Apellido LIKE ? AND Nombre LIKE ?";
         private const string SQLValidate = "SELECT * FROM Usuarios WHERE Usuario=? AND Clave=?";
         private const string SQLInsert = "INSERT INTO Usuarios (IdUsuario, Usuario, Clave, Apellido, Nombre, Mail) VALUES (?, ?, ?, ?, ?, ?)";
         private const string SQLUpdate = "UPDATE Usuarios SET Usuario = ?, Clave = ?, Apellido = ?, Nombre = ?, Mail = ? WHERE IdUsuario = ?";
@@ -174,13 +171,10 @@ namespace ProyectoTallerData {
                 connection = (OdbcConnection) connectionDA.GetOpenedConnection();
                 command = new OdbcCommand(SQLSearch, connection);
                 command.Parameters.Add("?", OdbcType.VarChar);
-                command.Parameters[0].Value = "%" + id + "%";
+                command.Parameters[0].Value = "%" + apellido + "%";
 
                 command.Parameters.Add("?", OdbcType.VarChar);
-                command.Parameters[1].Value = "%" + apellido + "%";
-
-                command.Parameters.Add("?", OdbcType.VarChar);
-                command.Parameters[2].Value = "%" + nombre + "%";
+                command.Parameters[1].Value = "%" + nombre + "%";
 
                 dr = command.ExecuteReader();
                 usuarios = new List<UsuarioEntity>();

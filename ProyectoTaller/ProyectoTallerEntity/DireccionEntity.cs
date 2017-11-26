@@ -1,7 +1,5 @@
-﻿namespace ProyectoTallerEntity
-{
-    public class DireccionEntity
-    {
+﻿namespace ProyectoTallerEntity {
+    public class DireccionEntity {
         private int iddireccion;
         private ClienteEntity cliente;
         private string direccion;
@@ -11,8 +9,7 @@
         private LocalidadEntity localidad;
         private ProvinciaEntity provincia;
 
-        public DireccionEntity()
-        {
+        public DireccionEntity() {
             IdDireccion = 0;
             Cliente = null;
             Direccion = "";
@@ -23,62 +20,47 @@
             Dpto = "";
         }
 
-        public int IdDireccion
-        {
-            get
-            {
+        public int IdDireccion {
+            get {
                 return iddireccion;
             }
-            set
-            {
+            set {
                 iddireccion = value;
             }
         }
 
-        public ClienteEntity Cliente
-        {
-            get
-            {
+        public ClienteEntity Cliente {
+            get {
                 return cliente;
             }
-            set
-            {
+            set {
                 cliente = value;
             }
         }
 
-        public string Direccion
-        {
-            get
-            {
+        public string Direccion {
+            get {
                 return direccion;
             }
-            set
-            {
+            set {
                 direccion = value;
             }
         }
 
-        public LocalidadEntity Localidad
-        {
-            get
-            {
+        public LocalidadEntity Localidad {
+            get {
                 return localidad;
             }
-            set
-            {
+            set {
                 localidad = value;
             }
         }
 
-        public ProvinciaEntity Provincia
-        {
-            get
-            {
+        public ProvinciaEntity Provincia {
+            get {
                 return provincia;
             }
-            set
-            {
+            set {
                 provincia = value;
             }
         }

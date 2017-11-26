@@ -30,58 +30,6 @@ namespace ProyectoTallerDataODBC {
             return entidad;
         }
 
-        private void CrearParametros(OdbcCommand command, LocalidadEntity entidad) {
-            OdbcParameter parameter = null;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.Provincia.IdProvincia;
-
-            parameter = command.Parameters.Add("?", OdbcType.VarChar);
-            parameter.Value = entidad.Nombre;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.IdLocalidad;
-        }
-
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, LocalidadEntity entidad) {
-            OdbcConnection connection = null;
-            OdbcCommand command = null;
-
-            try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new OdbcParameter("?", OdbcType.Int);
-                paramId.Value = entidad.IdLocalidad;
-
-                switch(sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
-                        command = new OdbcCommand(SQLInsert, connection);
-                        command.Parameters.Add(paramId);
-                        CrearParametros(command, entidad);
-                        break;
-
-                    case daComun.TipoComandoEnum.Actualizar:
-                        command = new OdbcCommand(SQLUpdate, connection);
-                        command.Parameters.Add(paramId);
-                        CrearParametros(command, entidad);
-                        break;
-
-                    case daComun.TipoComandoEnum.Eliminar:
-                        command = new OdbcCommand(SQLDelete, connection);
-                        command.Parameters.Add(paramId);
-                        CrearParametros(command, entidad);
-                        break;
-                }
-
-                command.ExecuteNonQuery();
-                connection.Close();
-            } catch(Exception ex) {
-                throw new daException(ex);
-            } finally {
-                if(command != null) {command.Dispose();}
-                if(connection != null) {connection.Dispose();}
-            }
-        }
-
         public LocalidadEntity ObtenerLocalidadPorId(int idlocalidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
@@ -180,20 +128,6 @@ namespace ProyectoTallerDataODBC {
             }
 
             return localidades;
-        }
-
-        public void Insertar(LocalidadEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-        }
-
-        public void Actualizar(LocalidadEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
-        }
-
-        public void Eliminar(int id) {
-            LocalidadEntity entidad = new LocalidadEntity();
-            entidad.IdLocalidad = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
         }
     }
 }

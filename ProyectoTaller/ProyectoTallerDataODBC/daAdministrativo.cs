@@ -4,9 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoTallerData {
     public class daAdministrativo {
@@ -82,13 +79,8 @@ namespace ProyectoTallerData {
             } catch(Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {
-                    command.Dispose();
-                }
-
-                if(connection != null) {
-                    connection.Dispose();
-                }
+                if(command != null) {command.Dispose();}
+                if(connection != null) {connection.Dispose();}
             }
         }
 
@@ -211,38 +203,6 @@ namespace ProyectoTallerData {
             }
 
             return administrativos;
-        }
-
-        public int ObtenerAcceso(int id) {
-            OdbcConnection connection = null;
-            OdbcCommand command = null;
-            OdbcDataReader dr = null;
-            int acceso;
-
-            try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
-                command = new OdbcCommand(SQLSearchAll, connection);
-                command.Parameters.Add("?", OdbcType.VarChar);
-                command.Parameters[0].Value = id;
-                dr = command.ExecuteReader();
-
-                acceso = 0;
-
-                while(dr.Read()) {
-                    acceso = Convert.ToInt32(dr["Acceso"]);
-                }
-
-                dr.Close();
-                connection.Close();
-            } catch(Exception ex) {
-                throw new daException(ex);
-            } finally {
-                dr = null;
-                if(command != null) {command.Dispose();}
-                if(connection != null) {connection.Dispose();}
-            }
-
-            return acceso;
         }
 
         public void Insertar(AdministrativoEntity entidad) {

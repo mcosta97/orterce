@@ -4,53 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    public class LocalidadEntity
-    {
+namespace ProyectoTallerEntity {
+    public class LocalidadEntity {
         private int idlocalidad;
         private ProvinciaEntity provincia;
         private string nombre;
 
-        public LocalidadEntity ()
-        {
+        public LocalidadEntity() {
             IdLocalidad = 0;
             Provincia = null;
             Nombre = "";
         }
 
-        public int IdLocalidad
-        {
-            get
-            {
+        public int IdLocalidad {
+            get {
                 return idlocalidad;
             }
-            set
-            {
+            set {
                 idlocalidad = value;
             }
         }
 
-        public ProvinciaEntity Provincia
-        {
-            get
-            {
+        public ProvinciaEntity Provincia {
+            get {
                 return provincia;
             }
-            set
-            {
+            set {
                 provincia = value;
             }
         }
 
-        public string Nombre
-        {
-            get
-            {
+        public string Nombre {
+            get {
                 return nombre;
             }
-            set
-            {
+            set {
                 nombre = value;
             }
         }

@@ -17,7 +17,7 @@ namespace ProyectoTallerData {
 
         private daConexion connectionDA = new daConexion();
 
-        public daPedido() {}
+        public daPedido() { }
 
         public PedidoEntity CrearEntidad(OdbcDataReader dr) {
             PedidoEntity entidad = new PedidoEntity();
@@ -54,11 +54,11 @@ namespace ProyectoTallerData {
             OdbcCommand command = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
                 IDataParameter paramId = new OdbcParameter("?", OdbcType.Int);
                 paramId.Value = entidad.IdPedido;
 
-                switch(sqlCommandType) {
+                switch (sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         command.Parameters.Add(paramId);
@@ -80,144 +80,122 @@ namespace ProyectoTallerData {
 
                 command.ExecuteNonQuery();
                 connection.Close();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {
-                    command.Dispose();
-                }
-
-                if(connection != null) {
-                    connection.Dispose();
-                }
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
         }
 
         public int ObtenerPedidoAbierto(int idusuario) {
-            OdbcConnection connection = null; // Conexión a la base de datos
-            OdbcCommand command = null; // Comando a ejecutar en la base de datos.
-            OdbcDataReader dr = null; // DataReader con registros de datos.
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
             int pedido = 0;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection(); // Se obtiene una conexión abierta.
-                command = new OdbcCommand(SQLPedidoAbierto, connection); // Se crea el comando con la sentencia Select.
-                command.Parameters.Add("?", OdbcType.Int); // Se agrega el parámetro idcliente.
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLPedidoAbierto, connection);
+                command.Parameters.Add("?", OdbcType.Int);
                 command.Parameters[0].Value = idusuario;
                 dr = command.ExecuteReader();
 
-                while(dr.Read()) {
+                while (dr.Read()) {
                     pedido = Convert.ToInt32(dr["idpedido"]);
                 }
 
-                connection.Close(); // Se cierra la conexión.
-            } catch(Exception ex) {
+                connection.Close();
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {
-                    command.Dispose();
-                }
-                if(connection != null) {
-                    connection.Dispose();
-                }
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
 
             return pedido;
         }
 
         public PedidoEntity ObtenerPedido(int idpedido) {
-            OdbcConnection connection = null; // Conexión a la base de datos
-            OdbcCommand command = null; // Comando a ejecutar en la base de datos.
-            OdbcDataReader dr = null; // DataReader con registros de datos.
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
             PedidoEntity pedido = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection(); // Se obtiene una conexión abierta.
-                command = new OdbcCommand(SQLSearchByPrimaryKey, connection); // Se crea el comando con la sentencia Select.
-                command.Parameters.Add("?", OdbcType.Int); // Se agrega el parámetro idcliente.
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLSearchByPrimaryKey, connection);
+                command.Parameters.Add("?", OdbcType.Int);
                 command.Parameters[0].Value = idpedido;
                 dr = command.ExecuteReader();
 
-                while(dr.Read()) {
+                while (dr.Read()) {
                     pedido = CrearEntidad(dr);
                 }
 
-                connection.Close(); // Se cierra la conexión.
-            } catch(Exception ex) {
+                connection.Close();
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {
-                    command.Dispose();
-                }
-                if(connection != null) {
-                    connection.Dispose();
-                }
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
 
             return pedido;
         }
 
         public DataTable ObtenerPedidoCarrito(int idpedido) {
-            OdbcConnection connection = null; // Conexión a la base de datos
-            OdbcCommand command = null; // Comando a ejecutar en la base de datos.
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
             OdbcDataAdapter da = null;
             DataTable dt = new DataTable();
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection(); // Se obtiene una conexión abierta.
-                command = new OdbcCommand(SQLItemsCarrito, connection); // Se crea el comando con la sentencia Select.
-                command.Parameters.Add("?", OdbcType.Int); // Se agrega el parámetro idcliente.
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLItemsCarrito, connection);
+                command.Parameters.Add("?", OdbcType.Int);
                 command.Parameters[0].Value = idpedido;
                 da = new OdbcDataAdapter(command);
                 da.Fill(dt);
 
-                connection.Close(); // Se cierra la conexión.
+                connection.Close();
             } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {command.Dispose();}
-                if(connection != null) {connection.Dispose();}
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
 
             return dt;
         }
 
         public List<PedidoEntity> ObtenerPedidosPorCliente(int idcliente) {
-            OdbcConnection connection = null; // Conexión a la base de datos
-            OdbcCommand command = null; // Comando a ejecutar en la base de datos.
-            OdbcDataReader dr = null; // DataReader con registros de datos.
-            List<PedidoEntity> pedidos = null; // Lista de objetos con datos de empleados.
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
+            List<PedidoEntity> pedidos = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection(); // Se obtiene una conexión abierta.
-                command = new OdbcCommand(SQLSearch, connection); // Se crea el comando con la sentencia Select.
-                command.Parameters.Add("?", OdbcType.Int); // Se agrega el parámetro idcliente.
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLSearch, connection);
+                command.Parameters.Add("?", OdbcType.Int);
                 command.Parameters[0].Value = idcliente;
-                // Se ejecuta el comando SQL en la base de datos y se devuelve 
-                // una instancia de DataReader con los registros encontrados.
                 dr = command.ExecuteReader();
 
-                pedidos = new List<PedidoEntity>(); // Se crea una instancia de la lista de empleados.
+                pedidos = new List<PedidoEntity>();
 
-                while(dr.Read()) // Mientras que se pueda leer el DataReader.
-                {
-                    pedidos.Add(CrearEntidad(dr)); // Se agrega un objeto con los datos del empleado a la lista.
+                while (dr.Read()) {
+                    pedidos.Add(CrearEntidad(dr));
                 }
 
-                dr.Close(); // Se cierra el DataReader.
-                connection.Close(); // Se cierra la conexión.
-            } catch(Exception ex) {
+                dr.Close();
+                connection.Close();
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
                 dr = null;
-
-                if(command != null) {
-                    command.Dispose(); // Se libera el recurso.
-                }
-
-                if(connection != null) {
-                    connection.Dispose(); // Se libera el recursos.
-                }
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
 
             return pedidos;
@@ -230,7 +208,7 @@ namespace ProyectoTallerData {
             da.Sumar(daComun.Contador.Pedido);
 
             daDetalle detalles = new daDetalle();
-            foreach(DetalleEntity detalle in entidad.Detalles) {
+            foreach (DetalleEntity detalle in entidad.Detalles) {
                 detalles.Insertar(detalle);
             }
         }
@@ -239,7 +217,7 @@ namespace ProyectoTallerData {
             EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
 
             daDetalle detalles = new daDetalle();
-            foreach(DetalleEntity detalle in entidad.Detalles) {
+            foreach (DetalleEntity detalle in entidad.Detalles) {
                 detalles.Actualizar(detalle);
             }
         }

@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace ProyectoTallerEntity
-{
-    public class UsuarioEntity
-    {
+namespace ProyectoTallerEntity {
+    public class UsuarioEntity : BaseEntity {
         private int idusuario;
         private string usuario;
         private string clave;
@@ -11,8 +9,7 @@ namespace ProyectoTallerEntity
         private string apellido;
         private string mail;
 
-        public UsuarioEntity()
-        {
+        public UsuarioEntity() {
             IdUsuario = 0;
             Usuario = "";
             Clave = "";
@@ -21,85 +18,65 @@ namespace ProyectoTallerEntity
             Mail = "";
         }
 
-        public int IdUsuario
-        {
-            get
-            {
+        public int IdUsuario {
+            get {
                 return idusuario;
             }
-            set
-            {
+            set {
                 idusuario = value;
             }
         }
 
-        public string Usuario
-        {
-            get
-            {
+        public string Usuario {
+            get {
                 return usuario;
             }
-            set
-            {
+            set {
                 usuario = value;
             }
         }
 
-        public string Clave
-        {
-            get
-            {
+        public string Clave {
+            get {
                 return clave;
             }
-            set
-            {
+            set {
                 clave = value;
             }
         }
 
-        public string Nombre
-        {
-            get
-            {
+        public string Nombre {
+            get {
                 return nombre;
             }
-            set
-            {
+            set {
                 nombre = value;
             }
         }
 
-        public string Apellido
-        {
-            get
-            {
+        public string Apellido {
+            get {
                 return apellido;
             }
-            set
-            {
+            set {
                 apellido = value;
             }
         }
 
-        public string Mail
-        {
-            get
-            {
+        public string Mail {
+            get {
                 return mail;
             }
-            set
-            {
+            set {
                 mail = value;
             }
         }
 
-        public bool TieneEmail()
-        {
+        public bool TieneEmail() {
             return (mail != null);
         }
 
-        public void BlanquearEmail()
-        {
+        public void BlanquearEmail() {
             mail = null;
         }
     }

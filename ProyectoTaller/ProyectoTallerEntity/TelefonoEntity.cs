@@ -1,6 +1,6 @@
 ﻿namespace ProyectoTallerEntity
 {
-    public class TelefonoEntity
+    public class TelefonoEntity : BaseEntity
     {
         private int idtelefono;
         private int idcliente;

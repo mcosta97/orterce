@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProyectoTallerEntity {
-    public class PedidoEntity {
+    public class PedidoEntity : BaseEntity {
         private int idpedido;
         private int idcliente;
         private int estado;

@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProyectoTallerEntity
-{
-    public class ProvinciaEntity
-    {
+namespace ProyectoTallerEntity {
+    public class ProvinciaEntity : BaseEntity {
         private int idprovincia;
         private string nombre;
 
@@ -16,26 +14,20 @@ namespace ProyectoTallerEntity
             Nombre = "";
         }
 
-        public int IdProvincia
-        {
-            get
-            {
+        public int IdProvincia {
+            get {
                 return idprovincia;
             }
-            set
-            {
+            set {
                 idprovincia = value;
             }
         }
 
-        public string Nombre
-        {
-            get
-            {
+        public string Nombre {
+            get {
                 return nombre;
             }
-            set
-            {
+            set {
                 nombre = value;
             }
         }

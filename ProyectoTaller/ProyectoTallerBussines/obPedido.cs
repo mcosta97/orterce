@@ -1,11 +1,6 @@
 ﻿using ProyectoTallerData;
 using ProyectoTallerEntity;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProyectoTallerBussines {
     public class obPedido {
@@ -39,23 +34,10 @@ namespace ProyectoTallerBussines {
 
         public static bool ValidarPedido(PedidoEntity pedido) {
             bool valido = true;
-
-            if (pedido.Detalles.Count == 0) {
-                valido = false;
-            }
-
-            if (pedido.Fecha.Value == null) {
-                valido = false;
-            }
-
-            if (pedido.IdCliente == 0) {
-                valido = false;
-            }
-
-            if (pedido.Estado.Equals("")) {
-                valido = false;
-            }
-
+            if (pedido.Detalles.Count == 0) {valido = false;}
+            if (pedido.Fecha.Value == null) {valido = false;}
+            if (pedido.IdCliente == 0) {valido = false;}
+            if (pedido.Estado.Equals("")) {valido = false;}
             return valido;
         }
 

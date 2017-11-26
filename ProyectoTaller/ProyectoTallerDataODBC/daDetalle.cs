@@ -141,9 +141,9 @@ namespace ProyectoTallerData {
             EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
         }
 
-        public void EliminarPorPedido(int id) {
+        public void EliminarPorPedido(int idpedido) {
             DetalleEntity entidad = new DetalleEntity();
-            entidad.IdPedido = id;
+            entidad.IdPedido = idpedido;
             EjecutarComando(daComun.TipoComandoEnum.Eliminar2, entidad);
         }
     }
