@@ -17,7 +17,7 @@ namespace ProyectoTallerData {
 
         private daConexion connectionDA = new daConexion();
 
-        public daAdministrativo() {}
+        public daAdministrativo() { }
 
         private AdministrativoEntity CrearEntidad(OdbcDataReader dr) {
             AdministrativoEntity entidad = new AdministrativoEntity();
@@ -50,11 +50,11 @@ namespace ProyectoTallerData {
             OdbcCommand command = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
                 IDataParameter paramId = new OdbcParameter("?", OdbcType.Int);
                 paramId.Value = entidad.IdAdministrativo;
 
-                switch(sqlCommandType) {
+                switch (sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         command.Parameters.Add(paramId);
@@ -76,12 +76,42 @@ namespace ProyectoTallerData {
 
                 command.ExecuteNonQuery();
                 connection.Close();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
-                if(command != null) {command.Dispose();}
-                if(connection != null) {connection.Dispose();}
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
+        }
+
+        public int ObtenerAcceso(int idUsuario) {
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
+            int acceso = 0;
+
+            try {
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLAcceso, connection);
+                command.Parameters.Add("?", OdbcType.Int);
+                command.Parameters[0].Value = idUsuario;
+                dr = command.ExecuteReader();
+
+                while (dr.Read()) {
+                    acceso = Convert.ToInt32(dr["acceso"]);
+                }
+
+                dr.Close();
+                connection.Close();
+            } catch (Exception ex) {
+                throw new daException(ex);
+            } finally {
+                dr = null;
+                if (command != null) {command.Dispose();}
+                if (connection != null) {connection.Dispose();}
+            }
+
+            return acceso;
         }
 
         public AdministrativoEntity ObtenerAdministrativo(string id) {
@@ -91,7 +121,7 @@ namespace ProyectoTallerData {
             AdministrativoEntity administrativo = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
                 command = new OdbcCommand(SQLSearchUser, connection);
                 command.Parameters.Add("?", OdbcType.Int);
                 command.Parameters[0].Value = id;
@@ -99,22 +129,18 @@ namespace ProyectoTallerData {
 
                 administrativo = new AdministrativoEntity();
 
-                while(dr.Read()) {
+                while (dr.Read()) {
                     administrativo = CrearEntidad(dr);
                 }
 
                 dr.Close();
                 connection.Close();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
                 dr = null;
-                if(command != null) {
-                    command.Dispose();
-                }
-                if(connection != null) {
-                    connection.Dispose();
-                }
+                if (command != null) {command.Dispose();}
+                if (connection != null) {connection.Dispose();}
             }
 
             return administrativo;
@@ -132,8 +158,8 @@ namespace ProyectoTallerData {
             dt.Columns.Add("Mail");
             dt.Columns.Add("Acceso");
 
-            foreach(AdministrativoEntity administrativo in administrativos) {
-                dt.Rows.Add(administrativo.IdUsuario, administrativo.IdAdministrativo, 
+            foreach (AdministrativoEntity administrativo in administrativos) {
+                dt.Rows.Add(administrativo.IdUsuario, administrativo.IdAdministrativo,
                             administrativo.Nombre, administrativo.Apellido, administrativo.Usuario,
                             administrativo.Clave, administrativo.Mail, administrativo.Acceso);
             }
@@ -180,7 +206,7 @@ namespace ProyectoTallerData {
             List<AdministrativoEntity> administrativos = null;
 
             try {
-                connection = (OdbcConnection) connectionDA.GetOpenedConnection();
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
                 command = new OdbcCommand(SQLSearchAll, connection);
                 command.Parameters.Add("?", OdbcType.VarChar);
                 command.Parameters[0].Value = "%" + acceso + "%";
@@ -188,18 +214,18 @@ namespace ProyectoTallerData {
 
                 administrativos = new List<AdministrativoEntity>();
 
-                while(dr.Read()) {
+                while (dr.Read()) {
                     administrativos.Add(CrearEntidad(dr));
                 }
 
                 dr.Close();
                 connection.Close();
-            } catch(Exception ex) {
+            } catch (Exception ex) {
                 throw new daException(ex);
             } finally {
                 dr = null;
-                if(command != null) {command.Dispose();}
-                if(connection != null) {connection.Dispose();}
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
             }
 
             return administrativos;

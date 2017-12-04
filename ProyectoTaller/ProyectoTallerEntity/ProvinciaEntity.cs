@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProyectoTallerEntity {
-    public class ProvinciaEntity : BaseEntity {
+    public class ProvinciaEntity {
         private int idprovincia;
         private string nombre;
 

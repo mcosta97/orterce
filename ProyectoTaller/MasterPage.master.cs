@@ -11,9 +11,11 @@ public partial class MasterPage : System.Web.UI.MasterPage {
             login.Visible = false;
             logged.Visible = true;
 
-            if((this.Session["UserID"]).GetType().IsAssignableFrom(new AdministrativoEntity().GetType())) {
-                admenu.Visible = true;
-            } else {
+            try {
+                if (((AdministrativoEntity)this.Session["UserID"]) != null) {
+                    admenu.Visible = true;
+                }
+            } catch (InvalidCastException ic) {
                 admenu.Visible = false;
             }
 

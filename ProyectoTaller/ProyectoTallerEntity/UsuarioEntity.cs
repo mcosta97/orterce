@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace ProyectoTallerEntity {
-    public class UsuarioEntity : BaseEntity {
+    public class UsuarioEntity {
         private int idusuario;
         private string usuario;
         private string clave;

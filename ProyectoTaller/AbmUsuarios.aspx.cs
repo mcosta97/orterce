@@ -8,11 +8,13 @@ using System.Web.UI.WebControls;
 public partial class AbmUsuarios : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e) {
-        if(((AdministrativoEntity) this.Session["AdminID"]) != null && ((AdministrativoEntity) this.Session["AdminID"]).Acceso != 2) {
+        try {
+            if (((AdministrativoEntity)this.Session["UserID"]) != null && ((AdministrativoEntity)this.Session["UserID"]).Acceso == 2) {
+                MostrarAdministrativos();
+                MostrarClientes();
+            }
+        } catch(InvalidCastException ic) {
             Response.Redirect("Principal.aspx");
-        } else {
-            MostrarAdministrativos();
-            MostrarClientes();
         }
     }
 

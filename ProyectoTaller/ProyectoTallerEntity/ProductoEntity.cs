@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProyectoTallerEntity {
-    public class ProductoEntity : BaseEntity {
+    public class ProductoEntity {
         private int idproducto;
         private int idcategoria;
         private string nombre;
