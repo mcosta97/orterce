@@ -33,18 +33,21 @@ public partial class Productos : System.Web.UI.Page {
 
     protected void add_Click(object sender, EventArgs e) {
         DetalleEntity detalle = new DetalleEntity();
+        PedidoEntity pedido = (PedidoEntity)Session["PedID"];
         if (Session["UserID"] != null) {
-            if (Session["PedID"] == null) {
-                PedidoEntity pedido = new PedidoEntity();
-                pedido.Estado = 4;
-                pedido.Fecha = DateTime.Now;
-                pedido.IdCliente = ((UsuarioEntity)Session["UserID"]).IdUsuario;
-                Session["PedID"] = pedido;
+            if (pedido == null) {
+                PedidoEntity ped = new PedidoEntity();
+                ped.Estado = 4;
+                ped.Fecha = DateTime.Now;
+                ped.IdCliente = ((UsuarioEntity)Session["UserID"]).IdUsuario;
+                Session["PedID"] = ped;
             }
             detalle.Cantidad = 1;
             detalle.IdPedido = 0;
             detalle.IdProducto = producto.IdProducto;
-            obPedido.AgregarProducto(detalle, (PedidoEntity)Session["PedID"]);
+            obPedido.AgregarProducto(detalle, pedido);
+        } else {
+            Response.Redirect("Login.aspx");
         }
     }
 }

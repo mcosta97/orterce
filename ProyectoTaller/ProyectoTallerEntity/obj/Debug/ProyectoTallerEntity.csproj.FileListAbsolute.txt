@@ -19,3 +19,8 @@ C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerEntity\bin\D
 C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.csprojResolveAssemblyReference.cache
 C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.dll
 C:\Users\40513649\Source\Repos\orterce\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.pdb
+C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerEntity\bin\Debug\ProyectoTallerEntity.dll
+C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerEntity\bin\Debug\ProyectoTallerEntity.pdb
+C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.csprojResolveAssemblyReference.cache
+C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.dll
+C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerEntity\obj\Debug\ProyectoTallerEntity.pdb
