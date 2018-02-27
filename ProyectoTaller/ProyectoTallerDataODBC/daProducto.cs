@@ -132,6 +132,7 @@ namespace ProyectoTallerData {
             dt.Columns.Add("Modelo"); dt.Columns.Add("Medida"); dt.Columns.Add("Imagen");
             dt.Columns.Add("Iva"); dt.Columns.Add("Precio"); dt.Columns.Add("Stock");
 
+
             foreach (ProductoEntity producto in productos) {
                 dt.Rows.Add(producto.IdProducto, producto.IdCategoria, producto.Nombre, producto.Descripcion,
                             producto.Color, producto.Peso, producto.Modelo, producto.Medida, producto.Imagen,
@@ -160,6 +161,7 @@ namespace ProyectoTallerData {
 
         public DataTable ObtenerProductosTabla() {
             List<ProductoEntity> productos = ObtenerProductos();
+            List<CategoriaEntity> categorias = new daCategoria().ObtenerCategorias();
             DataTable dt = new DataTable();
             dt.Columns.Add("IdProducto"); dt.Columns.Add("IdCategoria"); dt.Columns.Add("Nombre");
             dt.Columns.Add("Descripcion"); dt.Columns.Add("Color"); dt.Columns.Add("Peso");
@@ -167,7 +169,7 @@ namespace ProyectoTallerData {
             dt.Columns.Add("Iva"); dt.Columns.Add("Precio"); dt.Columns.Add("Stock");
 
             foreach (ProductoEntity producto in productos) {
-                dt.Rows.Add(producto.IdProducto, producto.IdCategoria, producto.Nombre, producto.Descripcion, 
+                dt.Rows.Add(producto.IdProducto, categorias.Find(a => producto.IdCategoria == a.IdCategoria).Nombre, producto.Nombre, producto.Descripcion, 
                             producto.Color, producto.Peso, producto.Modelo, producto.Medida, producto.Imagen, 
                             producto.Iva, producto.Precio, producto.Stock);
             }

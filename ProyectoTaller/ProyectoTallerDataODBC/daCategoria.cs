@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 namespace ProyectoTallerData {
     public class daCategoria {
         private const string SQLSearch = "SELECT * FROM Categorias";
+        private const string SQLSearchId = "SELECT * FROM Categorias WHERE IdCategoria = ?";
+        private const string SQLSearchNombre = "SELECT * FROM Categorias WHERE Nombre = ?";
         private const string SQLInsert = "INSERT INTO Categorias (Nombre) VALUES (?)";
         private const string SQLUpdate = "UPDATE Categorias SET Nombre = ? WHERE IdCategoria = ?";
         private const string SQLDelete = "DELETE FROM Categorias WHERE IdCategoria = ?";
@@ -28,9 +30,6 @@ namespace ProyectoTallerData {
 
         private void CrearParametros(OdbcCommand command, CategoriaEntity entidad) {
             OdbcParameter parameter = null;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.IdCategoria;
 
             parameter = command.Parameters.Add("?", OdbcType.VarChar);
             parameter.Value = entidad.Nombre;
@@ -86,6 +85,70 @@ namespace ProyectoTallerData {
             }
 
             return dt;
+        }
+
+        public CategoriaEntity ObtenerCategoria(int id) {
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
+            CategoriaEntity categoria = null;
+
+            try {
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLSearchId, connection);
+                IDataParameter paramId = new OdbcParameter("?", OdbcType.Int);
+                paramId.Value = id;
+                command.Parameters.Add(paramId);
+                dr = command.ExecuteReader();
+
+                categoria = new CategoriaEntity();
+
+                while (dr.Read()) {
+                    categoria = CrearEntidad(dr);
+                }
+
+                dr.Close();
+                connection.Close();
+            } catch (Exception ex) {
+                throw new daException(ex);
+            } finally {
+                dr = null;
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
+            }
+
+            return categoria;
+        }
+
+        public CategoriaEntity ObtenerCategoriaNombre(string nombre) {
+            OdbcConnection connection = null;
+            OdbcCommand command = null;
+            OdbcDataReader dr = null;
+            CategoriaEntity categoria = null;
+
+            try {
+                connection = (OdbcConnection)connectionDA.GetOpenedConnection();
+                command = new OdbcCommand(SQLSearchNombre, connection);
+                CrearParametros(command, categoria);
+                dr = command.ExecuteReader();
+
+                categoria = new CategoriaEntity();
+
+                while (dr.Read()) {
+                    categoria = CrearEntidad(dr);
+                }
+
+                dr.Close();
+                connection.Close();
+            } catch (Exception ex) {
+                throw new daException(ex);
+            } finally {
+                dr = null;
+                if (command != null) { command.Dispose(); }
+                if (connection != null) { connection.Dispose(); }
+            }
+
+            return categoria;
         }
 
         public List<CategoriaEntity> ObtenerCategorias() {

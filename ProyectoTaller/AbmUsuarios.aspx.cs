@@ -12,6 +12,8 @@ public partial class AbmUsuarios : System.Web.UI.Page
             if (((AdministrativoEntity)this.Session["UserID"]) != null && ((AdministrativoEntity)this.Session["UserID"]).Acceso == 2) {
                 MostrarAdministrativos();
                 MostrarClientes();
+            } else {
+                Response.Redirect("Login.aspx");
             }
         } catch(InvalidCastException ic) {
             Response.Redirect("Principal.aspx");
