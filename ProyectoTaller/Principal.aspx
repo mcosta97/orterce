@@ -1,22 +1,18 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Principal.aspx.cs" Inherits="Principal" %>
 
-<%@ MasterType VirtualPath="~/MasterPage.master" %>
-
 <asp:Content ContentPlaceHolderID="generico" Runat="Server">
     <div class="form-group contenedor-55">
         <asp:Repeater ID="d1" runat="server">
             <HeaderTemplate>
-                <div class="row">
+                <nav style="display: inline-block" class="navbar navbar-default">
             </HeaderTemplate>
 
             <ItemTemplate>
-                <div class="col-md-2 contenedor-15">
-                    <a href="Principal.aspx?Id=<%# Eval("idcategoria")%>" style="font-size:26px"><span class="label label-primary"><%# Eval("nombre")%></span></a>
-                </div>
+                <a class="navbar-brand" style="padding-left:50px; padding-right:50px" href="Principal.aspx?Id=<%# Eval("idcategoria")%>"><%# Eval("nombre")%></a>
             </ItemTemplate>
 
             <FooterTemplate>
-                </div>
+                </nav>
             </FooterTemplate>
         </asp:Repeater>
         <br>
