@@ -47,3 +47,15 @@ C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerBussines\bin\De
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.csprojResolveAssemblyReference.cache
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.dll
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerBussines.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerBussines.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\mercadopago.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerEntity.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\bin\Debug\ProyectoTallerEntity.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerBussines\obj\Debug\ProyectoTallerBussines.pdb

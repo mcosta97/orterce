@@ -125,10 +125,7 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(DetalleEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdDetalle = da.TraerContador(daComun.Contador.Detalle) + 1;
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Detalle);
         }
 
         public void Actualizar(DetalleEntity entidad) {

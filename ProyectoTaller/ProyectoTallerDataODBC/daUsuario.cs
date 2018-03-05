@@ -7,10 +7,10 @@ using System.Data.Odbc;
 
 namespace ProyectoTallerData {
     public class daUsuario {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Usuarios WHERE IdUsuario = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Usuarios WHERE IdUsuario = @IdUsuario";
         private const string SQLSearch = "SELECT * FROM Usuarios WHERE Apellido LIKE ? AND Nombre LIKE ?";
         private const string SQLValidate = "SELECT * FROM Usuarios WHERE Usuario=? AND Clave=?";
-        private const string SQLInsert = "INSERT INTO Usuarios (IdUsuario, Usuario, Clave, Apellido, Nombre, Mail) VALUES (?, ?, ?, ?, ?, ?)";
+        private const string SQLInsert = "INSERT INTO Usuarios (Usuario, Clave, Apellido, Nombre, Mail) VALUES (?, ?, ?, ?, ?)";
         private const string SQLUpdate = "UPDATE Usuarios SET Usuario = ?, Clave = ?, Apellido = ?, Nombre = ?, Mail = ? WHERE IdUsuario = ?";
         private const string SQLDelete = "DELETE FROM Usuarios WHERE IdUsuario = ?";
         private const string SQLMailUsuario = "SELECT * FROM Usuarios WHERE Usuario = ?";
@@ -70,14 +70,13 @@ namespace ProyectoTallerData {
                 switch(sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
                     case daComun.TipoComandoEnum.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
-                        CrearParametros(command, entidad);
                         command.Parameters.Add(paramId);
+                        CrearParametros(command, entidad);
                         break;
 
                     case daComun.TipoComandoEnum.Eliminar:
@@ -139,7 +138,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (OdbcConnection) connectionDA.GetOpenedConnection();
                 command = new OdbcCommand(SQLSearchByPrimaryKey, connection); 
-                command.Parameters.Add("?", OdbcType.VarChar); 
+                command.Parameters.Add("@IdUsuario", OdbcType.VarChar); 
                 command.Parameters[0].Value = idusuario;
                 dr = command.ExecuteReader();
 
@@ -230,10 +229,7 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(UsuarioEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdUsuario = da.TraerContador(daComun.Contador.Usuario) + 1;
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Usuario);
         }
 
         public void Actualizar(UsuarioEntity entidad) {

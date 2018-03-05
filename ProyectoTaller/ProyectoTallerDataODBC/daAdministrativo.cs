@@ -10,7 +10,7 @@ namespace ProyectoTallerData {
         private const string SQLSearchByPrimaryKey = "SELECT * FROM Administrativos WHERE IdAdministrativo = ?";
         private const string SQLSearchAll = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE Acceso LIKE ?";
         private const string SQLSearchUser = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE A.IdUsuario = ?";
-        private const string SQLInsert = "INSERT INTO Administrativos (IdAdministrativo, IdUsuario, Acceso) VALUES (?, ?, ?)";
+        private const string SQLInsert = "INSERT INTO Administrativos (IdUsuario, Acceso) VALUES (?, ?)";
         private const string SQLUpdate = "UPDATE Administrativos SET IdUsuario = ?, Acceso = ? WHERE IdAdministrativo = ?";
         private const string SQLDelete = "DELETE FROM Administrativos WHERE IdAdministrativo = ?";
         private const string SQLAcceso = "SELECT acceso FROM Administrativos WHERE IdUsuario = ?";
@@ -40,9 +40,6 @@ namespace ProyectoTallerData {
 
             parameter = command.Parameters.Add("?", OdbcType.Int);
             parameter.Value = entidad.Acceso;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.IdAdministrativo;
         }
 
         private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, AdministrativoEntity entidad) {
@@ -57,7 +54,6 @@ namespace ProyectoTallerData {
                 switch (sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
@@ -232,11 +228,8 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(AdministrativoEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdAdministrativo = (da.TraerContador(daComun.Contador.Administrador) + 1);
-            new daUsuario().Insertar(entidad);
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Administrador);
+            new daUsuario().Insertar(entidad);
         }
 
         public void Actualizar(AdministrativoEntity entidad) {

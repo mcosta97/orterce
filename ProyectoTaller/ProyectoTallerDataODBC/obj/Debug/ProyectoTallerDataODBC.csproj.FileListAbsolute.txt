@@ -44,3 +44,12 @@ C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\De
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.csprojResolveAssemblyReference.cache
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.dll
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerDataODBC.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerEntity.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\bin\Debug\ProyectoTallerEntity.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerDataODBC\obj\Debug\ProyectoTallerDataODBC.pdb

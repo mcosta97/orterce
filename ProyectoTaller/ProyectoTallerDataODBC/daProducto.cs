@@ -370,10 +370,7 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(ProductoEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdProducto = da.TraerContador(daComun.Contador.Producto) + 1;
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Producto);
         }
 
         public void Actualizar(ProductoEntity entidad) {

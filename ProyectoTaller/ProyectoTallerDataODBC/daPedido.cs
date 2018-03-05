@@ -34,9 +34,6 @@ namespace ProyectoTallerData {
             OdbcParameter parameter = null;
 
             parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.IdPedido;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
             parameter.Value = entidad.IdCliente;
 
             parameter = command.Parameters.Add("?", OdbcType.DateTime);
@@ -61,14 +58,13 @@ namespace ProyectoTallerData {
                 switch (sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
                     case daComun.TipoComandoEnum.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
+                        command.Parameters.Add(paramId);
                         break;
 
                     case daComun.TipoComandoEnum.Eliminar:
@@ -202,10 +198,7 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(PedidoEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdPedido = da.TraerContador(daComun.Contador.Pedido) + 1;
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Pedido);
 
             daDetalle detalles = new daDetalle();
             foreach (DetalleEntity detalle in entidad.Detalles) {

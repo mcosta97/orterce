@@ -23,3 +23,8 @@ C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerData\bin\Debug\
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerData\bin\Debug\ProyectoTallerData.pdb
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.dll
 C:\Users\Mati-PC\Source\Repos\trunk\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerData\bin\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerData\bin\Debug\ProyectoTallerData.pdb
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.csprojResolveAssemblyReference.cache
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.dll
+C:\Users\40513649\Desktop\Orterce\trunk\ProyectoTaller\ProyectoTallerData\obj\Debug\ProyectoTallerData.pdb

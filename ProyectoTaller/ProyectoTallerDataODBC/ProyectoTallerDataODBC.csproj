@@ -45,7 +45,6 @@
     <Compile Include="daCategoria.cs" />
     <Compile Include="daCliente.cs" />
     <Compile Include="daConexion.cs" />
-    <Compile Include="daContadores.cs" />
     <Compile Include="daDetalle.cs" />
     <Compile Include="daDireccion.cs" />
     <Compile Include="daLocalidad.cs" />

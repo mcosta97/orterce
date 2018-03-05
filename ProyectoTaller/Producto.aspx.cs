@@ -5,7 +5,14 @@ using System;
 public partial class Productos : System.Web.UI.Page {
     ProductoEntity producto = null;
     protected void Page_Load(object sender, EventArgs e) {
-        int productoCargado = Convert.ToInt32(Request.QueryString["Id"]);
+        int productoCargado = 0;
+        try
+        {
+            productoCargado = Convert.ToInt32(Request.QueryString["Id"]);
+        } catch(Exception ex)
+        {
+            Response.Redirect("Principal.aspx");
+        }
         if (productoCargado != 0) {
             TraerProducto(obProducto.CargarProducto(productoCargado));
             for (int i = 1; i < 101; i++) {

@@ -13,8 +13,8 @@ namespace ProyectoTallerData {
         private const string SQLSearchByPrimaryKey = "SELECT * FROM Clientes WHERE IdCliente = ?";
         private const string SQLSearchAll = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE Dni LIKE ?";
         private const string SQLSearchId = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE U.IdUsuario LIKE ?";
-        private const string SQLInsert = "INSERT INTO Clientes (IdCliente, Dni) VALUES (?,?)";
-        private const string SQLUpdate = "UPDATE Clientes SET Dni = ? WHERE IdCliente = ?";
+        private const string SQLInsert = "INSERT INTO Clientes (IdUsuario, Dni) VALUES (?,?)";
+        private const string SQLUpdate = "UPDATE Clientes SET IdUsuario=?, Dni = ? WHERE IdCliente = ?";
         private const string SQLDelete = "DELETE FROM Clientes WHERE IdCliente = ?";
 
         private daConexion connectionDA = new daConexion();
@@ -38,9 +38,6 @@ namespace ProyectoTallerData {
             OdbcParameter parameter = null;
 
             parameter = command.Parameters.Add("?", OdbcType.Int);
-            parameter.Value = entidad.IdCliente;
-
-            parameter = command.Parameters.Add("?", OdbcType.Int);
             parameter.Value = entidad.IdUsuario;
 
             parameter = command.Parameters.Add("?", OdbcType.VarChar);
@@ -59,14 +56,13 @@ namespace ProyectoTallerData {
                 switch(sqlCommandType) {
                     case daComun.TipoComandoEnum.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
                     case daComun.TipoComandoEnum.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
-                        command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
+                        command.Parameters.Add(paramId);
                         break;
 
                     case daComun.TipoComandoEnum.Eliminar:
@@ -177,11 +173,8 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(ClienteEntity entidad) {
-            daContadores da = new daContadores();
-            entidad.IdCliente = (da.TraerContador(daComun.Contador.Cliente) + 1);
             new daUsuario().Insertar(entidad);
             EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
-            da.Sumar(daComun.Contador.Cliente);
         }
 
         public void Actualizar(ClienteEntity entidad) {
