@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerBussines", "ProyectoTallerBussines\ProyectoTallerBussines.csproj", "{A925DBA4-04A8-4198-88D0-0CDCADCE5EA2}"
 EndProject
@@ -11,27 +11,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerDataODBC", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProyectoTallerEntity", "ProyectoTallerEntity\ProyectoTallerEntity.csproj", "{4479A8E7-911C-4592-9ED6-82BF58080CE9}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ProyectoTaller", ".", "{CC115B09-5E75-4CED-981B-00E97C235025}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Orterce", ".", "{CC115B09-5E75-4CED-981B-00E97C235025}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
 		ProjectReferences = "{4479a8e7-911c-4592-9ed6-82bf58080ce9}|ProyectoTallerEntity.dll;{a925dba4-04a8-4198-88d0-0cdcadce5ea2}|ProyectoTallerBussines.dll;{719E55D2-C0D9-4844-8734-A627B07CE460}|ProyectoTallerDataODBC.dll;{B9DEDC68-E5DC-4E52-A2F8-91408E545CDB}|ProyectoTallerData.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_1354"
-		Debug.AspNetCompiler.PhysicalPath = "..\ProyectoTaller\"
+		Debug.AspNetCompiler.PhysicalPath = "..\Orterce\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1354\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_1354"
-		Release.AspNetCompiler.PhysicalPath = "..\ProyectoTaller\"
+		Release.AspNetCompiler.PhysicalPath = "..\Orterce\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_1354\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "1354"
-		SlnRelativePath = "..\ProyectoTaller\"
+		SlnRelativePath = "..\Orterce\"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoTest", "C:\Users\Mati\source\repos\MercadoPagoTest\MercadoPagoTest.csproj", "{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,8 +61,15 @@ Global
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3C0F105-B89C-4A23-904E-CC92AAF0199E}
 	EndGlobalSection
 EndGlobal

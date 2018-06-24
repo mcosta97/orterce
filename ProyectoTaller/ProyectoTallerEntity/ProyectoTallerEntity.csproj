@@ -43,6 +43,7 @@
     <Compile Include="AdministrativoEntity.cs" />
     <Compile Include="CategoriaEntity.cs" />
     <Compile Include="ClienteEntity.cs" />
+    <Compile Include="CobroEntity.cs" />
     <Compile Include="DetalleEntity.cs" />
     <Compile Include="DireccionEntity.cs" />
     <Compile Include="LocalidadEntity.cs" />
