@@ -7,6 +7,7 @@ using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daDireccion {
@@ -55,7 +56,7 @@ namespace ProyectoTallerData {
             parameter.Value = entidad.Dpto;
         }
 
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, DireccionEntity entidad) {
+        private void EjecutarComando(TipoComando sqlCommandType, DireccionEntity entidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -65,18 +66,18 @@ namespace ProyectoTallerData {
                 paramId.Value = entidad.IdDireccion;
 
                 switch(sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
+                    case TipoComando.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Actualizar:
+                    case TipoComando.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
                         CrearParametros(command, entidad);
                         command.Parameters.Add(paramId);
                         break;
 
-                    case daComun.TipoComandoEnum.Eliminar:
+                    case TipoComando.Eliminar:
                         command = new OdbcCommand(SQLDelete, connection);
                         command.Parameters.Add(paramId);
                         break;
@@ -152,17 +153,17 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(DireccionEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
         }
 
         public void Actualizar(DireccionEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
         }
 
         public void Eliminar(int id) {
             DireccionEntity entidad = new DireccionEntity();
             entidad.IdDireccion = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
         }
     }
 }

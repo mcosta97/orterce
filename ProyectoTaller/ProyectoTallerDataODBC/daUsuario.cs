@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daUsuario {
@@ -58,7 +59,7 @@ namespace ProyectoTallerData {
                 parameter.Value = DBNull.Value;
         }
 
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, UsuarioEntity entidad) {
+        private void EjecutarComando(TipoComando sqlCommandType, UsuarioEntity entidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -68,18 +69,18 @@ namespace ProyectoTallerData {
                 paramId.Value = entidad.IdUsuario;
 
                 switch(sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
+                    case TipoComando.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Actualizar:
+                    case TipoComando.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Eliminar:
+                    case TipoComando.Eliminar:
                         command = new OdbcCommand(SQLDelete, connection);
                         command.Parameters.Add(paramId);
                         break;
@@ -229,17 +230,17 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(UsuarioEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
         }
 
         public void Actualizar(UsuarioEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
         }
 
         public void Eliminar(int id) {
             UsuarioEntity entidad = new UsuarioEntity();
             entidad.IdUsuario = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
         }
     }
 }

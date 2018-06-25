@@ -23,7 +23,7 @@ namespace ProyectoTallerDataODBC {
 
         public daContadores() {}
 
-        private void EjecutarComando(daComun.Contador contador) {
+        private void EjecutarComando(Contador contador) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -31,39 +31,39 @@ namespace ProyectoTallerDataODBC {
                 connection = (OdbcConnection) connectionDA.GetOpenedConnection();
 
                 switch(contador) {
-                    case daComun.Contador.Usuario:
+                    case Contador.Usuario:
                         command = new OdbcCommand(SQLUpdUsuario, connection);
                         break;
 
-                    case daComun.Contador.Administrador:
+                    case Contador.Administrador:
                         command = new OdbcCommand(SQLUpdAdministrativo, connection);
                         break;
 
-                    case daComun.Contador.Cliente:
+                    case Contador.Cliente:
                         command = new OdbcCommand(SQLUpdCliente, connection);
                         break;
 
-                    case daComun.Contador.Categoria:
+                    case Contador.Categoria:
                         command = new OdbcCommand(SQLUpdCategoria, connection);
                         break;
 
-                    case daComun.Contador.Detalle:
+                    case Contador.Detalle:
                         command = new OdbcCommand(SQLUpdDetalle, connection);
                         break;
 
-                    case daComun.Contador.Direccion:
+                    case Contador.Direccion:
                         command = new OdbcCommand(SQLUpdDireccion, connection);
                         break;
 
-                    case daComun.Contador.Pedido:
+                    case Contador.Pedido:
                         command = new OdbcCommand(SQLUpdPedido, connection);
                         break;
 
-                    case daComun.Contador.Producto:
+                    case Contador.Producto:
                         command = new OdbcCommand(SQLUpdProducto, connection);
                         break;
 
-                    case daComun.Contador.Telefono:
+                    case Contador.Telefono:
                         command = new OdbcCommand(SQLUpdTelefono, connection);
                         break;
                 }
@@ -78,11 +78,11 @@ namespace ProyectoTallerDataODBC {
             }
         }
 
-        public void Sumar(daComun.Contador contador) {
+        public void Sumar(Contador contador) {
             EjecutarComando(contador);
         }
 
-        public int TraerContador(daComun.Contador contador) {
+        public int TraerContador(Contador contador) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
             OdbcDataReader dr = null;
@@ -97,19 +97,19 @@ namespace ProyectoTallerDataODBC {
 
                 while(dr.Read()) {
                     switch(contador) {
-                        case daComun.Contador.Usuario:
+                        case Contador.Usuario:
                             cont = Convert.ToInt32(dr["usuario"]);
                             break;
-                        case daComun.Contador.Cliente:
+                        case Contador.Cliente:
                             cont = Convert.ToInt32(dr["cliente"]);
                             break;
-                        case daComun.Contador.Administrador:
+                        case Contador.Administrador:
                             cont = Convert.ToInt32(dr["administrativo"]);
                             break;
-                        case daComun.Contador.Categoria:
+                        case Contador.Categoria:
                             cont = Convert.ToInt32(dr["categoria"]);
                             break;
-                        case daComun.Contador.Producto:
+                        case Contador.Producto:
                             cont = Convert.ToInt32(dr["producto"]);
                             break;
                     }

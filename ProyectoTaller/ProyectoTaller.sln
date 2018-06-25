@@ -33,8 +33,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Orterce", ".", "{CC115B09-5
 		SlnRelativePath = "..\Orterce\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoPagoTest", "C:\Users\Mati\source\repos\MercadoPagoTest\MercadoPagoTest.csproj", "{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,10 +59,6 @@ Global
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC115B09-5E75-4CED-981B-00E97C235025}.Release|Any CPU.Build.0 = Debug|Any CPU
-		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAD97956-28DA-40B9-B3B8-B84CC19E3F1B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

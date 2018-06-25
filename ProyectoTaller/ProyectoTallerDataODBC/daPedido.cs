@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daPedido {
@@ -46,7 +47,7 @@ namespace ProyectoTallerData {
             parameter.Value = entidad.Total;
         }
 
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, PedidoEntity entidad) {
+        private void EjecutarComando(TipoComando sqlCommandType, PedidoEntity entidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -56,18 +57,18 @@ namespace ProyectoTallerData {
                 paramId.Value = entidad.IdPedido;
 
                 switch (sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
+                    case TipoComando.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Actualizar:
+                    case TipoComando.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
                         CrearParametros(command, entidad);
                         command.Parameters.Add(paramId);
                         break;
 
-                    case daComun.TipoComandoEnum.Eliminar:
+                    case TipoComando.Eliminar:
                         command = new OdbcCommand(SQLDelete, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
@@ -198,7 +199,7 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(PedidoEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
 
             daDetalle detalles = new daDetalle();
             foreach (DetalleEntity detalle in entidad.Detalles) {
@@ -207,7 +208,7 @@ namespace ProyectoTallerData {
         }
 
         public void Actualizar(PedidoEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
 
             daDetalle detalles = new daDetalle();
             foreach (DetalleEntity detalle in entidad.Detalles) {
@@ -218,7 +219,7 @@ namespace ProyectoTallerData {
         public void Eliminar(int id) {
             PedidoEntity entidad = new PedidoEntity();
             entidad.IdPedido = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
             new daDetalle().EliminarPorPedido(id);
         }
 

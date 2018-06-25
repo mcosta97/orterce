@@ -7,6 +7,7 @@ using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daProducto {
@@ -80,7 +81,7 @@ namespace ProyectoTallerData {
             parameter.Value = entidad.Imagen;
         }
 
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, ProductoEntity entidad) {
+        private void EjecutarComando(TipoComando sqlCommandType, ProductoEntity entidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -90,19 +91,19 @@ namespace ProyectoTallerData {
                 paramId.Value = entidad.IdProducto;
 
                 switch (sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
+                    case TipoComando.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Actualizar:
+                    case TipoComando.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Eliminar:
+                    case TipoComando.Eliminar:
                         command = new OdbcCommand(SQLDelete, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
@@ -370,17 +371,17 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(ProductoEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
         }
 
         public void Actualizar(ProductoEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
         }
 
         public void Eliminar(int id) {
             ProductoEntity entidad = new ProductoEntity();
             entidad.IdProducto = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
         }
 
     }

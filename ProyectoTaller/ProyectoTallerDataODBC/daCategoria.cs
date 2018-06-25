@@ -7,6 +7,7 @@ using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daCategoria {
@@ -35,7 +36,7 @@ namespace ProyectoTallerData {
             parameter.Value = entidad.Nombre;
         }
 
-        private void EjecutarComando(daComun.TipoComandoEnum sqlCommandType, CategoriaEntity entidad) {
+        private void EjecutarComando(TipoComando sqlCommandType, CategoriaEntity entidad) {
             OdbcConnection connection = null;
             OdbcCommand command = null;
 
@@ -45,19 +46,19 @@ namespace ProyectoTallerData {
                 paramId.Value = entidad.IdCategoria;
 
                 switch (sqlCommandType) {
-                    case daComun.TipoComandoEnum.Insertar:
+                    case TipoComando.Insertar:
                         command = new OdbcCommand(SQLInsert, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Actualizar:
+                    case TipoComando.Actualizar:
                         command = new OdbcCommand(SQLUpdate, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
                         break;
 
-                    case daComun.TipoComandoEnum.Eliminar:
+                    case TipoComando.Eliminar:
                         command = new OdbcCommand(SQLDelete, connection);
                         command.Parameters.Add(paramId);
                         CrearParametros(command, entidad);
@@ -182,17 +183,17 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(CategoriaEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
         }
 
         public void Actualizar(CategoriaEntity entidad) {
-            EjecutarComando(daComun.TipoComandoEnum.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
         }
 
         public void Eliminar(int id) {
             CategoriaEntity entidad = new CategoriaEntity();
             entidad.IdCategoria = id;
-            EjecutarComando(daComun.TipoComandoEnum.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
         }
     }
 }

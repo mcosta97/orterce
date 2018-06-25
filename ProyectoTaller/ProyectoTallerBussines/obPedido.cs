@@ -1,22 +1,23 @@
 ﻿using ProyectoTallerData;
 using ProyectoTallerEntity;
 using System.Data;
+using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerBussines {
     public class obPedido {
 
-        public static void CambiarEstadoPedido(PedidoEntity pedido, daComun.EstadoPedido tipo) {
+        public static void CambiarEstadoPedido(PedidoEntity pedido, EstadoPedido tipo) {
             switch (tipo) {
-                case daComun.EstadoPedido.Aprobado:
+                case EstadoPedido.Aprobado:
                     pedido.Estado = 1;
                     break;
-                case daComun.EstadoPedido.Cancelado:
+                case EstadoPedido.Cancelado:
                     pedido.Estado = 2;
                     break;
-                case daComun.EstadoPedido.Cobrado:
+                case EstadoPedido.Cobrado:
                     pedido.Estado = 3;
                     break;
-                case daComun.EstadoPedido.Creado:
+                case EstadoPedido.Creado:
                     pedido.Estado = 4;
                     break;
             }
