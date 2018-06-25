@@ -10,13 +10,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Principal : System.Web.UI.Page {
+public partial class Principal : Page {
+
+    private obCategoria bussinesCategoria;
+
     protected void Page_Load(object sender, EventArgs e) {
+        bussinesCategoria = new obCategoria();
         AgregarCategorias();
 
         int id = Convert.ToInt32(Request.QueryString["Id"]);
+
         if(id > 0) {
-            TraerProductos(obCategoria.CargarProductos(id));
+            TraerProductos(bussinesCategoria.CargarProductos(id));
         } else {
             MostrarPromocionados();
         }

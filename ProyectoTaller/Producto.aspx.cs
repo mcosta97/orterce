@@ -3,16 +3,20 @@ using ProyectoTallerEntity;
 using System;
 
 public partial class Productos : System.Web.UI.Page {
-    ProductoEntity producto = null;
+
+    private ProductoEntity producto = null;
+    private obPedido bussinesPedido;
+
     protected void Page_Load(object sender, EventArgs e) {
+        bussinesPedido = new obPedido();
         int productoCargado = 0;
-        try
-        {
+
+        try {
             productoCargado = Convert.ToInt32(Request.QueryString["Id"]);
-        } catch(Exception ex)
-        {
+        } catch(Exception ex) {
             Response.Redirect("Principal.aspx");
         }
+
         if (productoCargado != 0) {
             TraerProducto(obProducto.CargarProducto(productoCargado));
             for (int i = 1; i < 101; i++) {
@@ -25,7 +29,6 @@ public partial class Productos : System.Web.UI.Page {
 
     protected void TraerProducto(ProductoEntity producto) {
         this.producto = producto;
-
         imagen.ImageUrl = producto.Imagen;
         titulo.Text = producto.Nombre;
         descripcion.Text = "Descripcion: " + producto.Descripcion;
@@ -52,7 +55,7 @@ public partial class Productos : System.Web.UI.Page {
             detalle.Cantidad = 1;
             detalle.IdPedido = 0;
             detalle.IdProducto = producto.IdProducto;
-            obPedido.AgregarProducto(detalle, pedido);
+            bussinesPedido.AgregarProducto(detalle, pedido);
         } else {
             Response.Redirect("Login.aspx");
         }

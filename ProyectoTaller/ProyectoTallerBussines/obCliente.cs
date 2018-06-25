@@ -8,7 +8,7 @@ using ProyectoTallerData;
 
 namespace ProyectoTallerBussines {
     public class obCliente : obUsuario {
-        public static bool ValidarCliente(ClienteEntity cliente) {
+        public bool ValidarCliente(ClienteEntity cliente) {
             bool valido = true;
             
             if (cliente.Dni.Equals("")) {
@@ -22,21 +22,21 @@ namespace ProyectoTallerBussines {
             return valido;
         }
 
-        public static void ActualizarCliente(ClienteEntity cliente) {
+        public void ActualizarCliente(ClienteEntity cliente) {
             new daCliente().Actualizar(cliente);
         }
 
-        public static void CrearCliente(ClienteEntity cliente) {
+        public void CrearCliente(ClienteEntity cliente) {
             if (ValidarCliente(cliente)) {
                 new daCliente().Insertar(cliente);
             }
         }
 
-        public static void EliminarCliente(ClienteEntity cliente) {
+        public void EliminarCliente(ClienteEntity cliente) {
             new daCliente().Eliminar(cliente.IdCliente);
         }
 
-        public static List<PedidoEntity> ObtenerPedidos(ClienteEntity cliente) {
+        public List<PedidoEntity> ObtenerPedidos(ClienteEntity cliente) {
             return new daPedido().ObtenerPedidosPorCliente(cliente.IdCliente);
         }
     }

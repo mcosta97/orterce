@@ -8,7 +8,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class AbmProductos : System.Web.UI.Page {
+public partial class AbmProductos : Page {
+
     protected void Page_Load(object sender, EventArgs e) {
         try {
             if (((AdministrativoEntity)this.Session["UserID"]) != null && ((AdministrativoEntity)this.Session["UserID"]).Acceso == 2) {

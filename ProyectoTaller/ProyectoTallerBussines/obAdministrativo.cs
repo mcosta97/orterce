@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProyectoTallerBussines {
     public class obAdministrativo : obUsuario {
-        public static bool ValidarAdministrativo(AdministrativoEntity administrativo) {
+        public bool ValidarAdministrativo(AdministrativoEntity administrativo) {
             bool valido = true;
 
             if (administrativo.Acceso.Equals("")) {
@@ -22,19 +22,19 @@ namespace ProyectoTallerBussines {
             return valido;
         }
 
-        public static void ActualizarAdministrativo(AdministrativoEntity administrativo) {
+        public void ActualizarAdministrativo(AdministrativoEntity administrativo) {
             daAdministrativo da = new daAdministrativo();
             da.Actualizar(administrativo);
         }
 
-        public static void CrearAdministrativo(AdministrativoEntity administrativo) {
+        public void CrearAdministrativo(AdministrativoEntity administrativo) {
             if (ValidarAdministrativo(administrativo)) {
                 daAdministrativo da = new daAdministrativo();
                 da.Insertar(administrativo);
             }
         }
 
-        public static void EliminarAdministrativo(AdministrativoEntity administrativo) {
+        public void EliminarAdministrativo(AdministrativoEntity administrativo) {
             daAdministrativo da = new daAdministrativo();
             da.Eliminar(administrativo.IdAdministrativo);
         }

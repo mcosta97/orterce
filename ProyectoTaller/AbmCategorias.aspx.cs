@@ -8,8 +8,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class AbmCategoria : System.Web.UI.Page {
+public partial class AbmCategoria : Page {
+
+    private obCategoria bussinesCategoria;
+
     protected void Page_Load(object sender, EventArgs e) {
+        bussinesCategoria = new obCategoria();
         try {
             if(((AdministrativoEntity) this.Session["UserID"]) != null && ((AdministrativoEntity) this.Session["UserID"]).Acceso == 2) {
                 MostrarCategorias();
@@ -45,19 +49,19 @@ public partial class AbmCategoria : System.Web.UI.Page {
     protected void btnAlta_Click(object sender, EventArgs e) {
         CategoriaEntity categoria = new CategoriaEntity();
         categoria.Nombre = txtCategoria.Text;
-        obCategoria.CrearCategoria(categoria);
+        bussinesCategoria.CrearCategoria(categoria);
     }
 
     protected void btnBaja_Click(object sender, EventArgs e) {
         CategoriaEntity categoria = new CategoriaEntity();
         categoria.IdCategoria = Convert.ToInt32(txtId.Text);
-        obCategoria.EliminarCategoria(categoria);
+        bussinesCategoria.EliminarCategoria(categoria);
     }
 
     protected void btnEdit_Click(object sender, EventArgs e) {
         CategoriaEntity categoria = new CategoriaEntity();
         categoria.Nombre = txtCategoria.Text;
         categoria.IdCategoria = Convert.ToInt32(txtId.Text);
-        obCategoria.ActualizarCategoria(categoria);
+        bussinesCategoria.ActualizarCategoria(categoria);
     }
 }

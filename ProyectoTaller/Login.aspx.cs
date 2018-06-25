@@ -1,11 +1,13 @@
 ﻿using System;
 using ProyectoTallerBussines;
 using ProyectoTallerEntity;
-using ProyectoTallerData;
 
 public partial class Login : System.Web.UI.Page {
-    protected void Page_Load(object sender, EventArgs e) {
 
+    private obPedido bussinesPedido;
+
+    protected void Page_Load(object sender, EventArgs e) {
+        bussinesPedido = new obPedido();
     }
 
     protected void btnLogin_Click(object sender, EventArgs e) {
@@ -14,10 +16,10 @@ public partial class Login : System.Web.UI.Page {
         if (usuario != null) {
             AdministrativoEntity admin = obUsuario.esAdministrativo(usuario);
             if (admin.IdAdministrativo != 0) {
-                this.Session["UserID"] = admin;
+                Session["UserID"] = admin;
             } else {
-                this.Session["UserID"] = usuario;
-                this.Session["PedID"] = obPedido.ObtenerCarritoUsuario(usuario.IdUsuario);
+                Session["UserID"] = usuario;
+                Session["PedID"] = bussinesPedido.ObtenerCarritoUsuario(usuario.IdUsuario);
             }
 
             Response.Redirect("Principal.aspx");

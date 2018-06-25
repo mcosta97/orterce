@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Logout : System.Web.UI.Page {
+public partial class Logout : Page {
+
     protected void Page_Load(object sender, EventArgs e) {
-        this.Session.Clear();
+        Session.Clear();
         Response.Redirect("Principal.aspx");
     }
+
 }

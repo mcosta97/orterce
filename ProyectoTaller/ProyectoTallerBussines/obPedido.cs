@@ -6,7 +6,13 @@ using static ProyectoTallerData.daComun;
 namespace ProyectoTallerBussines {
     public class obPedido {
 
-        public static void CambiarEstadoPedido(PedidoEntity pedido, EstadoPedido tipo) {
+        private obDetalle detalleBussines;
+
+        public obPedido() {
+            detalleBussines = new obDetalle();
+        }
+
+        public void CambiarEstadoPedido(PedidoEntity pedido, EstadoPedido tipo) {
             switch (tipo) {
                 case EstadoPedido.Aprobado:
                     pedido.Estado = 1;
@@ -24,16 +30,16 @@ namespace ProyectoTallerBussines {
             new daPedido().Actualizar(pedido);
         }
 
-        public static PedidoEntity ObtenerCarritoUsuario(int idUsuario) {
+        public PedidoEntity ObtenerCarritoUsuario(int idUsuario) {
             daPedido da = new daPedido();
             return da.ObtenerPedido(da.ObtenerPedidoAbierto(idUsuario));
         }
 
-        public static DataTable ObtenerItemsCarrito(int idPedido) {
+        public DataTable ObtenerItemsCarrito(int idPedido) {
             return new daPedido().ObtenerPedidoCarrito(idPedido);
         }
 
-        public static bool ValidarPedido(PedidoEntity pedido) {
+        public bool ValidarPedido(PedidoEntity pedido) {
             bool valido = true;
             if (pedido.Detalles.Count == 0) {valido = false;}
             if (pedido.Fecha.Value == null) {valido = false;}
@@ -42,11 +48,11 @@ namespace ProyectoTallerBussines {
             return valido;
         }
 
-        public static int ObtenerCarritoAbierto(int idcliente) {
+        public int ObtenerCarritoAbierto(int idcliente) {
             return new daPedido().ObtenerPedidoAbierto(idcliente);
         }
 
-        public static void AgregarProducto(DetalleEntity detalle, PedidoEntity pedido) {
+        public void AgregarProducto(DetalleEntity detalle, PedidoEntity pedido) {
             if(pedido != null && detalle != null) {
                 pedido.Detalles.Add(detalle);
                 pedido.Total += detalle.Cantidad * obProducto.CalcularPrecioIva(obProducto.CargarProducto(detalle.IdProducto));
@@ -54,26 +60,26 @@ namespace ProyectoTallerBussines {
             }
         }
 
-        public static void SacarProducto(DetalleEntity detalle, PedidoEntity pedido) {
+        public void SacarProducto(DetalleEntity detalle, PedidoEntity pedido) {
             if(pedido != null && detalle != null) {
                 pedido.Detalles.Remove(detalle);
                 new daPedido().Actualizar(pedido);
             }
         }
 
-        public static void GuardarPedido(PedidoEntity pedido) {
+        public void GuardarPedido(PedidoEntity pedido) {
             if (ValidarPedido(pedido)) {
                 new daPedido().Insertar(pedido);
             }
         }
 
-        public static void ActualizarPedido(PedidoEntity pedido) {
+        public void ActualizarPedido(PedidoEntity pedido) {
             new daPedido().Actualizar(pedido);
         }
 
-        public static void EliminarPedido(PedidoEntity pedido) {
+        public void EliminarPedido(PedidoEntity pedido) {
             new daPedido().Eliminar(pedido.IdPedido);
-            obDetalle.EliminarDetalles(pedido.IdPedido);
+            detalleBussines.EliminarDetalles(pedido.IdPedido);
         }
     }
 }

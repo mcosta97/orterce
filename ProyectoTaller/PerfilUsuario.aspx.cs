@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class PerfilUsuario : System.Web.UI.Page {
+public partial class PerfilUsuario : Page {
     protected void Page_Load(object sender, EventArgs e) {
         if(this.Session["UserID"] == null) {
             Response.Redirect("Login.aspx");

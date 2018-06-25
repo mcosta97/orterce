@@ -5,11 +5,15 @@ using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class AbmUsuarios : System.Web.UI.Page
-{
+public partial class AbmUsuarios : Page {
+
+    private obCliente bussinesCliente;
+    private obAdministrativo bussinesAdministrativo;
+
     protected void Page_Load(object sender, EventArgs e) {
+        bussinesCliente = new obCliente();
         try {
-            if (((AdministrativoEntity)this.Session["UserID"]) != null && ((AdministrativoEntity)this.Session["UserID"]).Acceso == 2) {
+            if (((AdministrativoEntity) Session["UserID"]) != null && ((AdministrativoEntity)Session["UserID"]).Acceso == 2) {
                 MostrarAdministrativos();
                 MostrarClientes();
             } else {
@@ -29,7 +33,7 @@ public partial class AbmUsuarios : System.Web.UI.Page
             user.Apellido = txtApellido.Text;
             user.Mail = txtMail.Text;
             user.Dni = txtAdic.Text;
-            obCliente.CrearCliente(user);
+            bussinesCliente.CrearCliente(user);
         } else {
             AdministrativoEntity admin = new AdministrativoEntity();
             admin.Usuario = txtUsuario.Text;
@@ -38,7 +42,7 @@ public partial class AbmUsuarios : System.Web.UI.Page
             admin.Apellido = txtApellido.Text;
             admin.Mail = txtMail.Text;
             admin.Acceso = Convert.ToInt32(txtAdic.Text);
-            obAdministrativo.CrearAdministrativo(admin);
+            bussinesAdministrativo.CrearAdministrativo(admin);
         }
         Response.Redirect("AbmUsuarios.aspx");
     }
@@ -48,12 +52,12 @@ public partial class AbmUsuarios : System.Web.UI.Page
             ClienteEntity cliente = new ClienteEntity();
             cliente.IdCliente = Convert.ToInt32(txtIdE.Text);
             cliente.IdUsuario = Convert.ToInt32(txtIdU.Text);
-            obCliente.EliminarCliente(cliente);
+            bussinesCliente.EliminarCliente(cliente);
         } else {
             AdministrativoEntity admin = new AdministrativoEntity();
             admin.IdAdministrativo = Convert.ToInt32(txtIdE.Text);
             admin.IdUsuario = Convert.ToInt32(txtIdU.Text);
-            obAdministrativo.EliminarAdministrativo(admin);
+            bussinesAdministrativo.EliminarAdministrativo(admin);
         }
         Response.Redirect("AbmUsuarios.aspx");
     }
@@ -69,7 +73,7 @@ public partial class AbmUsuarios : System.Web.UI.Page
             cliente.Usuario = txtUsuario.Text;
             cliente.Clave = txtClave.Text;
             cliente.Mail = txtMail.Text;
-            obCliente.ActualizarCliente(cliente);
+            bussinesCliente.ActualizarCliente(cliente);
         } else {
             AdministrativoEntity admin = new AdministrativoEntity();
             admin.IdAdministrativo = Convert.ToInt32(txtIdE.Text);
@@ -80,8 +84,7 @@ public partial class AbmUsuarios : System.Web.UI.Page
             admin.Usuario = txtUsuario.Text;
             admin.Clave = txtClave.Text;
             admin.Mail = txtMail.Text;
-            daAdministrativo da = new daAdministrativo();
-            da.Actualizar(admin);
+            bussinesAdministrativo.ActualizarAdministrativo(admin);
         }
         Response.Redirect("AbmUsuarios.aspx");
     }

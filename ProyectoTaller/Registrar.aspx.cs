@@ -7,9 +7,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Registrar : System.Web.UI.Page {
-    protected void Page_Load(object sender, EventArgs e) {
+public partial class Registrar : Page {
 
+    private obCliente bussinesCliente;
+
+    protected void Page_Load(object sender, EventArgs e) {
+        bussinesCliente = new obCliente();
     }
 
     private bool ValidarCampos() {
@@ -64,8 +67,8 @@ public partial class Registrar : System.Web.UI.Page {
             cliente.Clave = txtPass.Text;
             cliente.Mail = txtMail.Text;
             cliente.Dni = txtDni.Text;
-            if (obCliente.ValidarCliente(cliente)) {
-                obCliente.CrearCliente(cliente);
+            if (bussinesCliente.ValidarCliente(cliente)) {
+                bussinesCliente.CrearCliente(cliente);
                 Response.Redirect("Login.aspx");
             } else {
                 Response.Write("<script language='JavaScript'>alert('El usuario ya existe.')</script>");
