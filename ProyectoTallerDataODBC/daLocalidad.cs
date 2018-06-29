@@ -10,12 +10,12 @@ using System.Data.SqlClient;
 
 namespace ProyectoTallerDataODBC {
     public class daLocalidad {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Localidades WHERE IdLocalidad = ?";
-        private const string SQLSearch = "SELECT * FROM Localidades WHERE Nombre=";
-        private const string SQLSearchProv = "SELECT * FROM Localidades L INNER JOIN Provincias P ON P.IdProvincia = L.IdProvincia WHERE p.nombre=?";
-        private const string SQLInsert = "INSERT INTO Localidades (IdProvincia, Nombre) VALUES (?,?)";
-        private const string SQLUpdate = "UPDATE Localidades SET IdProvincia = ?, Nombre = ? WHERE idLocalidad = ?";
-        private const string SQLDelete = "DELETE FROM Localidades WHERE IdLocalidad = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Localidades WHERE IdLocalidad = @IdLocalidad";
+        private const string SQLSearch = "SELECT * FROM Localidades WHERE Nombre=@Nombre";
+        private const string SQLSearchProv = "SELECT * FROM Localidades L INNER JOIN Provincias P ON P.IdProvincia = L.IdProvincia WHERE p.nombre=@Nombre";
+        private const string SQLInsert = "INSERT INTO Localidades (IdLocalidad, IdProvincia, Nombre) VALUES ((SELECT MAX(IdLocalidad) + 1 FROM Localidades), @IdProvincia, @Nombre)";
+        private const string SQLUpdate = "UPDATE Localidades SET IdProvincia = @IdProvincia, Nombre = @Nombre WHERE idLocalidad = @IdLocalidad";
+        private const string SQLDelete = "DELETE FROM Localidades WHERE IdLocalidad = @IdLocalidad";
 
         private daConexion connectionDA = new daConexion();
 
@@ -39,7 +39,7 @@ namespace ProyectoTallerDataODBC {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchByPrimaryKey, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdLocalidad", SqlDbType.Int);
                 command.Parameters[0].Value = idlocalidad;
                 dr = command.ExecuteReader();
 
@@ -71,7 +71,7 @@ namespace ProyectoTallerDataODBC {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearch, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Nombre", SqlDbType.VarChar);
                 command.Parameters[0].Value = loca;
                 dr = command.ExecuteReader();
 
@@ -107,7 +107,7 @@ namespace ProyectoTallerDataODBC {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchProv, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Nombre", SqlDbType.VarChar);
                 command.Parameters[0].Value = provincia;
                 dr = command.ExecuteReader();
 

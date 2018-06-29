@@ -9,13 +9,13 @@ using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daAdministrativo {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Administrativos WHERE IdAdministrativo = ?";
-        private const string SQLSearchAll = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE Acceso LIKE ?";
-        private const string SQLSearchUser = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE A.IdUsuario = ?";
-        private const string SQLInsert = "INSERT INTO Administrativos (IdUsuario, Acceso) VALUES (?, ?)";
-        private const string SQLUpdate = "UPDATE Administrativos SET IdUsuario = ?, Acceso = ? WHERE IdAdministrativo = ?";
-        private const string SQLDelete = "DELETE FROM Administrativos WHERE IdAdministrativo = ?";
-        private const string SQLAcceso = "SELECT acceso FROM Administrativos WHERE IdUsuario = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Administrativos WHERE IdAdministrativo = @IdAdministrativo";
+        private const string SQLSearchAll = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE Acceso LIKE @Acceso";
+        private const string SQLSearchUser = "SELECT * FROM Administrativos A INNER JOIN Usuarios U ON U.IdUsuario = A.IdUsuario WHERE A.IdUsuario = @IdUsuario";
+        private const string SQLInsert = "INSERT INTO Administrativos (IdAdministrativo, IdUsuario, Acceso) VALUES ((SELECT MAX(IdAdministrativo) + 1 FROM Administrativos), @IdUsuario, @Acceso)";
+        private const string SQLUpdate = "UPDATE Administrativos SET IdUsuario = @IdUsuario, Acceso = @Acceso WHERE IdAdministrativo = @IdAdministrativo";
+        private const string SQLDelete = "DELETE FROM Administrativos WHERE IdAdministrativo = @IdAdministrativo";
+        private const string SQLAcceso = "SELECT acceso FROM Administrativos WHERE IdUsuario = @IdUsuario";
 
         private daConexion connectionDA = new daConexion();
 
@@ -37,10 +37,10 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, AdministrativoEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdUsuario", SqlDbType.Int);
             parameter.Value = entidad.IdUsuario;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Acceso", SqlDbType.Int);
             parameter.Value = entidad.Acceso;
         }
 
@@ -50,7 +50,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdAdministrativo", SqlDbType.Int);
                 paramId.Value = entidad.IdAdministrativo;
 
                 switch (sqlCommandType) {
@@ -91,7 +91,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLAcceso, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdUsuario", SqlDbType.Int);
                 command.Parameters[0].Value = idUsuario;
                 dr = command.ExecuteReader();
 
@@ -121,7 +121,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchUser, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdUsuario", SqlDbType.Int);
                 command.Parameters[0].Value = id;
                 dr = command.ExecuteReader();
 
@@ -165,38 +165,6 @@ namespace ProyectoTallerData {
             return dt;
         }
 
-        public AdministrativoEntity ObtenerUsuarioAdministrativo(string usuario) {
-            SqlConnection connection = null;
-            SqlCommand command = null;
-            SqlDataReader dr = null;
-            AdministrativoEntity administrativo = null;
-
-            try {
-                connection = (SqlConnection)connectionDA.GetOpenedConnection();
-                command = new SqlCommand(SQLSearchUser, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
-                command.Parameters[0].Value = usuario;
-                dr = command.ExecuteReader();
-
-                administrativo = new AdministrativoEntity();
-
-                while (dr.Read()) {
-                    administrativo = CrearEntidad(dr);
-                }
-
-                dr.Close();
-                connection.Close();
-            } catch (Exception ex) {
-                throw new daException(ex);
-            } finally {
-                dr = null;
-                if (command != null) { command.Dispose(); }
-                if (connection != null) { connection.Dispose(); }
-            }
-
-            return administrativo;
-        }
-
         public List<AdministrativoEntity> ObtenerAdministrativos(string acceso) {
             SqlConnection connection = null;
             SqlCommand command = null;
@@ -206,7 +174,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchAll, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Acceso", SqlDbType.VarChar);
                 command.Parameters[0].Value = "%" + acceso + "%";
                 dr = command.ExecuteReader();
 

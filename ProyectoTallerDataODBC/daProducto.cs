@@ -12,13 +12,13 @@ using static ProyectoTallerData.daComun;
 namespace ProyectoTallerData {
     public class daProducto {
 
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Productos WHERE IdProducto = ?";
-        private const string SQLSearch = "SELECT * FROM Productos WHERE IdCategoria = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Productos WHERE IdProducto = @IdProducto";
+        private const string SQLSearch = "SELECT * FROM Productos WHERE IdCategoria = @IdCategoria";
         private const string SQLSearchTabla = "SELECT * FROM Productos";
-        private const string SQLSearchTablaId = "SELECT * FROM Productos WHERE IdProducto = ?";
-        private const string SQLInsert = "INSERT INTO Productos (IdCategoria, Nombre, Descripcion, Precio, Iva, Stock, Peso, Color, Modelo, Medida, Imagen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        private const string SQLUpdate = "UPDATE Productos SET IdCategoria = ?, Nombre = ?, Descripcion = ?, Precio = ?, Iva = ?, Stock = ?, Peso = ?, Color = ?, Modelo = ?, Medida = ?, Imagen = ? WHERE IdProducto = ?";
-        private const string SQLDelete = "DELETE FROM Productos WHERE IdProducto = ?";
+        private const string SQLSearchTablaId = "SELECT * FROM Productos WHERE IdProducto = @IdProducto";
+        private const string SQLInsert = "INSERT INTO Productos (IdProducto, IdCategoria, Nombre, Descripcion, Precio, Iva, Stock, Peso, Color, Modelo, Medida, Imagen) VALUES ((SELECT MAX(IdProducto) + 1 FROM Productos), @Nombre, @Descripcion, @Precio, @Iva, @Stock, @Peso, @Color, @Modelo, @Medida, @Imagen)";
+        private const string SQLUpdate = "UPDATE Productos SET IdCategoria = @IdCategoria, Nombre = @Nombre, Descripcion = @Descripcion, Precio = @Precio, Iva = @Iva, Stock = @Stock, Peso = @Peso, Color = @Color, Modelo = @Modelo, Medida = @Medida, Imagen = @Imagen WHERE IdProducto = @IdProducto";
+        private const string SQLDelete = "DELETE FROM Productos WHERE IdProducto = @IdProducto";
         private const string SQLPromocionado = "SELECT * FROM Promocionados X INNER JOIN Productos P ON X.IdProducto = P.IdProducto";
         private const string SQLPublicitado = "SELECT * FROM Publicitados X INNER JOIN Productos P ON X.IdProducto = P.IdProducto";
 
@@ -50,34 +50,34 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, ProductoEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Nombre", SqlDbType.VarChar);
             parameter.Value = entidad.Nombre;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Descripcion", SqlDbType.VarChar);
             parameter.Value = entidad.Descripcion;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Decimal);
+            parameter = command.Parameters.Add("@Precio", SqlDbType.Decimal);
             parameter.Value = entidad.Precio;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Iva", SqlDbType.Int);
             parameter.Value = entidad.Iva;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Stock", SqlDbType.Int);
             parameter.Value = entidad.Stock;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Peso", SqlDbType.Int);
             parameter.Value = entidad.Peso;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Color", SqlDbType.VarChar);
             parameter.Value = entidad.Color;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Modelo", SqlDbType.VarChar);
             parameter.Value = entidad.Modelo;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Medida", SqlDbType.VarChar);
             parameter.Value = entidad.Medida;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Imagen", SqlDbType.VarChar);
             parameter.Value = entidad.Imagen;
         }
 
@@ -87,7 +87,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdProducto", SqlDbType.Int);
                 paramId.Value = entidad.IdProducto;
 
                 switch (sqlCommandType) {
@@ -232,7 +232,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection(); // Se obtiene una conexión abierta.
                 command = new SqlCommand(SQLSearchTablaId, connection); // Se crea el comando con la sentencia Select.
-                command.Parameters.Add("?", SqlDbType.Int); // Se agrega el parámetro idcliente.
+                command.Parameters.Add("@IdProducto", SqlDbType.Int); // Se agrega el parámetro idcliente.
                 command.Parameters[0].Value = id;
                 da = new SqlDataAdapter(command);
                 da.Fill(dt);
@@ -257,7 +257,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchTablaId, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdProducto", SqlDbType.Int);
                 command.Parameters[0].Value = id;
                 dr = command.ExecuteReader();
                 producto = new ProductoEntity();
@@ -347,7 +347,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearch, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdCategoria", SqlDbType.Int);
                 command.Parameters[0].Value = idcategoria;
                 dr = command.ExecuteReader();
 

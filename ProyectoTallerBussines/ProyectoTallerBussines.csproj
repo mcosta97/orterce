@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mercadopago">
-      <HintPath>..\Bin\mercadopago.dll</HintPath>
+      <HintPath>..\..\orterce\trunk\ProyectoTaller\Bin\mercadopago.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -57,7 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProyectoTallerDataSql\ProyectoTallerDataSql.csproj">
+    <ProjectReference Include="..\ProyectoTallerDataODBC\ProyectoTallerDataODBC.csproj">
       <Project>{719E55D2-C0D9-4844-8734-A627B07CE460}</Project>
       <Name>ProyectoTallerDataSql</Name>
     </ProjectReference>

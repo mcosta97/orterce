@@ -10,11 +10,11 @@ using System.Data.SqlClient;
 
 namespace ProyectoTallerDataODBC {
     public class daProvincia {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Provincias WHERE IdProvincia = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Provincias WHERE IdProvincia = @IdProvincia";
         private const string SQLSearch = "SELECT * FROM Provincias";
-        private const string SQLInsert = "INSERT INTO Provincias (Nombre) VALUES (?)";
-        private const string SQLUpdate = "UPDATE Provincias SET Nombre = ? WHERE IdProvincia = ?";
-        private const string SQLDelete = "DELETE FROM Provincias WHERE IdProvincia = ?";
+        private const string SQLInsert = "INSERT INTO Provincias (IdProvincia, Nombre) VALUES ((SELECT MAX(IdProvincia) + 1 FROM Provincias), @Nombre)";
+        private const string SQLUpdate = "UPDATE Provincias SET Nombre = @Nombre WHERE IdProvincia = @IdProvincia";
+        private const string SQLDelete = "DELETE FROM Provincias WHERE IdProvincia = @IdProvincia";
 
         private daConexion connectionDA = new daConexion();
 
@@ -37,7 +37,7 @@ namespace ProyectoTallerDataODBC {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchByPrimaryKey, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdProvincia", SqlDbType.Int);
                 command.Parameters[0].Value = idprovincia;
                 dr = command.ExecuteReader();
 

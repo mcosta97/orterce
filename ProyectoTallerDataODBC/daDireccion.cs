@@ -11,10 +11,10 @@ using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daDireccion {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Direcciones WHERE IdDireccion = ?";
-        private const string SQLSearchAll = "SELECT * FROM Direcciones WHERE IdCliente LIKE ?";
-        private const string SQLInsert = "INSERT INTO Direcciones (IdCliente, Direccion, IdProvincia, IdLocalidad, Altura, Piso, Dpto) VALUES (?,?,?,?,?,?,?)";
-        private const string SQLUpdate = "UPDATE Direcciones SET IdCliente = ?, Direccion = ?, IdProvincia = ?, IdLocalidad = ?, Altura = ?, Piso = ?, Dpto = ? WHERE IdDireccion = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Direcciones WHERE IdDireccion = @IdDireccion";
+        private const string SQLSearchAll = "SELECT * FROM Direcciones WHERE IdCliente LIKE @IdCliente";
+        private const string SQLInsert = "INSERT INTO Direcciones (IdDireccion, IdCliente, Direccion, IdProvincia, IdLocalidad, Altura, Piso, Dpto) VALUES ((SELECT MAX(IdDireccion) + 1 FROM Direcciones), @IdCliente, @Direccion, @IdProvincia, @IdLocalidad, @Altura, @Piso, @Dpto)";
+        private const string SQLUpdate = "UPDATE Direcciones SET IdCliente = @IdCliente, Direccion = @Direccion, IdProvincia = @IdProvincia, IdLocalidad = @IdLocalidad, Altura = @Altura, Piso = @Piso, Dpto = @Dpto WHERE IdDireccion = @IdDireccion";
         private const string SQLDelete = "DELETE FROM Direcciones WHERE IdDireccion = ?";
 
         private daConexion connectionDA = new daConexion();
@@ -37,22 +37,22 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, DireccionEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdCliente", SqlDbType.Int);
             parameter.Value = entidad.Cliente.IdCliente;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@IdLocalidad", SqlDbType.VarChar);
             parameter.Value = entidad.Localidad.IdLocalidad;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdProvincia", SqlDbType.Int);
             parameter.Value = entidad.Provincia.IdProvincia;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Altura", SqlDbType.Int);
             parameter.Value = entidad.Altura;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Piso", SqlDbType.VarChar);
             parameter.Value = entidad.Piso;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Dpto", SqlDbType.VarChar);
             parameter.Value = entidad.Dpto;
         }
 
@@ -62,7 +62,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdDireccion", SqlDbType.Int);
                 paramId.Value = entidad.IdDireccion;
 
                 switch(sqlCommandType) {
@@ -127,7 +127,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchAll, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@IdCliente", SqlDbType.VarChar);
                 command.Parameters[0].Value = idcliente;
 
                 dr = command.ExecuteReader();

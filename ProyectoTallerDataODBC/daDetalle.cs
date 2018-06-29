@@ -12,12 +12,12 @@ using System.Data.SqlClient;
 namespace ProyectoTallerData {
     public class daDetalle {
 
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Detalles WHERE IdDetalle = ?";
-        private const string SQLSearch = "SELECT * FROM Detalles WHERE IdPedido = ?";
-        private const string SQLInsert = "INSERT INTO Detalles (IdPedido, IdProducto, Cantidad) VALUES (?, ?, ?)";
-        private const string SQLUpdate = "UPDATE Detalles SET IdPedido = ?, IdProducto = ?, Cantidad = ? WHERE IdPedido = ?";
-        private const string SQLDelete = "DELETE FROM Detalles WHERE IdDetalle = ?";
-        private const string SQLDeletePedido = "DELETE FROM Detalles WHERE IdPedido = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Detalles WHERE IdDetalle = @IdDetalle";
+        private const string SQLSearch = "SELECT * FROM Detalles WHERE IdPedido = @IdPedido";
+        private const string SQLInsert = "INSERT INTO Detalles (IdDetalle, IdPedido, IdProducto, Cantidad) VALUES ((SELECT MAX(IdDetalle) + 1 FROM Detalles), @IdPedido, @IdProducto, @Cantidad)";
+        private const string SQLUpdate = "UPDATE Detalles SET IdDetalle = @IdDetalle, IdProducto = @IdProducto, Cantidad = @Cantidad WHERE IdPedido = @IdPedido";
+        private const string SQLDelete = "DELETE FROM Detalles WHERE IdDetalle = @IdDetalle";
+        private const string SQLDeletePedido = "DELETE FROM Detalles WHERE IdPedido = @IdPedido";
 
         private daConexion connectionDA = new daConexion();
 
@@ -35,16 +35,16 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, DetalleEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdDetalle", SqlDbType.Int);
             parameter.Value = entidad.IdDetalle;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdPedido", SqlDbType.Int);
             parameter.Value = entidad.IdPedido;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdProducto", SqlDbType.Int);
             parameter.Value = entidad.IdProducto;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@Cantidad", SqlDbType.Int);
             parameter.Value = entidad.Cantidad;
         }
 
@@ -54,7 +54,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdDetalle", SqlDbType.Int);
                 paramId.Value = entidad.IdDetalle;
 
                 switch(sqlCommandType) {
@@ -102,7 +102,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearch, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdPedido", SqlDbType.Int);
                 command.Parameters[0].Value = idPedido;
                 dr = command.ExecuteReader();
 
@@ -126,23 +126,23 @@ namespace ProyectoTallerData {
         }
 
         public void Insertar(DetalleEntity entidad) {
-            EjecutarComando(daComun.TipoComando.Insertar, entidad);
+            EjecutarComando(TipoComando.Insertar, entidad);
         }
 
         public void Actualizar(DetalleEntity entidad) {
-            EjecutarComando(daComun.TipoComando.Actualizar, entidad);
+            EjecutarComando(TipoComando.Actualizar, entidad);
         }
 
         public void Eliminar(int id) {
             DetalleEntity entidad = new DetalleEntity();
             entidad.IdPedido = id;
-            EjecutarComando(daComun.TipoComando.Eliminar, entidad);
+            EjecutarComando(TipoComando.Eliminar, entidad);
         }
 
         public void EliminarPorPedido(int idpedido) {
             DetalleEntity entidad = new DetalleEntity();
             entidad.IdPedido = idpedido;
-            EjecutarComando(daComun.TipoComando.Eliminar2, entidad);
+            EjecutarComando(TipoComando.Eliminar2, entidad);
         }
     }
 }

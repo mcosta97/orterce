@@ -1,6 +1,6 @@
 ﻿using ProyectoTallerBussines;
 using ProyectoTallerData;
-using ProyectoTallerDataSql;
+using ProyectoTallerDataODBC;
 using ProyectoTallerEntity;
 using System;
 using System.Collections.Generic;

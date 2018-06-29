@@ -21,7 +21,7 @@ namespace ProyectoTallerBussines {
         }
 
         public static AdministrativoEntity esAdministrativo(UsuarioEntity usuario) {
-            return new daAdministrativo().ObtenerUsuarioAdministrativo(usuario.IdUsuario.ToString());
+            return new daAdministrativo().ObtenerAdministrativo(usuario.IdUsuario.ToString());
         }
 
         public static List<DireccionEntity> VerificarDomicilios(UsuarioEntity usuario) {

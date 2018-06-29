@@ -8,13 +8,13 @@ using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daPedido {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Pedidos WHERE IdPedido = ?";
-        private const string SQLSearch = "SELECT * FROM Pedidos WHERE IdCliente = ?";
-        private const string SQLInsert = "INSERT INTO Pedidos (IdCliente, Fecha, Estado) VALUES (?, ?, ?)";
-        private const string SQLUpdate = "UPDATE Pedidos SET IdCliente = ?, Fecha = ?, Estado = ? WHERE IdPedido = ?";
-        private const string SQLDelete = "DELETE FROM Pedidos WHERE IdPedido = ?";
-        private const string SQLItemsCarrito = "SELECT pro.idproducto, imagen, cantidad, nombre, precio, modelo, iddetalle FROM pedidos ped INNER JOIN detalles det ON det.idpedido = ped.idpedido INNER JOIN productos pro ON pro.idproducto = det.idproducto WHERE ped.idpedido = ?";
-        private const string SQLPedidoAbierto = "SELECT idpedido FROM Pedidos P INNER JOIN Clientes C ON C.idcliente = P.idcliente WHERE P.estado = 5 AND idusuario = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Pedidos WHERE IdPedido = @IdPedido";
+        private const string SQLSearch = "SELECT * FROM Pedidos WHERE IdCliente = @IdCliente";
+        private const string SQLInsert = "INSERT INTO Pedidos (IdPedido, IdCliente, Fecha, Estado) VALUES ((SELECT MAX(IdPedido) + 1 FROM Pedidos), @IdCliente, @Fecha, @Estado)";
+        private const string SQLUpdate = "UPDATE Pedidos SET IdCliente = @IdCliente, Fecha = @Fecha, Estado = @Estado WHERE IdPedido = @IdPedido";
+        private const string SQLDelete = "DELETE FROM Pedidos WHERE IdPedido = @IdPedido";
+        private const string SQLItemsCarrito = "SELECT pro.idproducto, imagen, cantidad, nombre, precio, modelo, iddetalle FROM pedidos ped INNER JOIN detalles det ON det.idpedido = ped.idpedido INNER JOIN productos pro ON pro.idproducto = det.idproducto WHERE ped.idpedido = @IdCPedido";
+        private const string SQLPedidoAbierto = "SELECT idpedido FROM Pedidos P INNER JOIN Clientes C ON C.idcliente = P.idcliente WHERE P.estado = 5 AND idusuario = @IdUsuario";
 
         private daConexion connectionDA = new daConexion();
 
@@ -34,16 +34,16 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, PedidoEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdCliente", SqlDbType.Int);
             parameter.Value = entidad.IdCliente;
 
-            parameter = command.Parameters.Add("?", SqlDbType.DateTime);
+            parameter = command.Parameters.Add("@Fecha", SqlDbType.DateTime);
             parameter.Value = entidad.Fecha;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Estado", SqlDbType.VarChar);
             parameter.Value = entidad.Estado;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Decimal);
+            parameter = command.Parameters.Add("@Total", SqlDbType.Decimal);
             parameter.Value = entidad.Total;
         }
 
@@ -53,7 +53,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdPedido", SqlDbType.Int);
                 paramId.Value = entidad.IdPedido;
 
                 switch (sqlCommandType) {
@@ -94,7 +94,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLPedidoAbierto, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdUsuario", SqlDbType.Int);
                 command.Parameters[0].Value = idusuario;
                 dr = command.ExecuteReader();
 
@@ -122,7 +122,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchByPrimaryKey, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdPedido", SqlDbType.Int);
                 command.Parameters[0].Value = idpedido;
                 dr = command.ExecuteReader();
 
@@ -150,7 +150,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLItemsCarrito, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdPedido", SqlDbType.Int);
                 command.Parameters[0].Value = idpedido;
                 da = new SqlDataAdapter(command);
                 da.Fill(dt);
@@ -175,7 +175,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearch, connection);
-                command.Parameters.Add("?", SqlDbType.Int);
+                command.Parameters.Add("@IdCliente", SqlDbType.Int);
                 command.Parameters[0].Value = idcliente;
                 dr = command.ExecuteReader();
 

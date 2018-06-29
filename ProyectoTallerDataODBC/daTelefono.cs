@@ -11,11 +11,11 @@ using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daTelefono {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Telefonos WHERE IdTelefono = ?";
-        private const string SQLSearchAll = "SELECT * FROM Telefonos WHERE IdCliente LIKE ?";
-        private const string SQLInsert = "INSERT INTO Telefonos (IdCliente, Telefono) VALUES (?,?)";
-        private const string SQLUpdate = "UPDATE Telefonos SET Telefono = ? WHERE IdTelefono = ?";
-        private const string SQLDelete = "DELETE FROM Telefonos WHERE IdTelefono = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Telefonos WHERE IdTelefono = @IdTelefono";
+        private const string SQLSearchAll = "SELECT * FROM Telefonos WHERE IdCliente LIKE @IdCliente";
+        private const string SQLInsert = "INSERT INTO Telefonos (IdTelefono, IdCliente, Telefono) VALUES ((SELECT MAX(IdTelefono) + 1 FROM Telefonos), @IdCliente, @Telefono)";
+        private const string SQLUpdate = "UPDATE Telefonos SET Telefono = @Telefono WHERE IdTelefono = @IdTelefono";
+        private const string SQLDelete = "DELETE FROM Telefonos WHERE IdTelefono = @IdTelefono";
 
         private daConexion connectionDA = new daConexion();
 
@@ -32,10 +32,10 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, TelefonoEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdCliente", SqlDbType.Int);
             parameter.Value = entidad.IdCliente;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Telefono", SqlDbType.VarChar);
             parameter.Value = entidad.Telefono;
         }
 
@@ -58,7 +58,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdTelefono", SqlDbType.Int);
                 paramId.Value = entidad.IdTelefono;
 
                 switch(sqlCommandType) {
@@ -105,7 +105,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchAll, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@IdCliente", SqlDbType.VarChar);
                 command.Parameters[0].Value = idcliente;
                 dr = command.ExecuteReader();
 

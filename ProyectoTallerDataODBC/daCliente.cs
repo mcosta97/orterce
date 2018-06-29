@@ -11,12 +11,12 @@ using static ProyectoTallerData.daComun;
 
 namespace ProyectoTallerData {
     public class daCliente {
-        private const string SQLSearchByPrimaryKey = "SELECT * FROM Clientes WHERE IdCliente = ?";
-        private const string SQLSearchAll = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE Dni LIKE ?";
-        private const string SQLSearchId = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE U.IdUsuario LIKE ?";
-        private const string SQLInsert = "INSERT INTO Clientes (IdUsuario, Dni) VALUES (?,?)";
-        private const string SQLUpdate = "UPDATE Clientes SET IdUsuario=?, Dni = ? WHERE IdCliente = ?";
-        private const string SQLDelete = "DELETE FROM Clientes WHERE IdCliente = ?";
+        private const string SQLSearchByPrimaryKey = "SELECT * FROM Clientes WHERE IdCliente = @IdCliente";
+        private const string SQLSearchAll = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE Dni LIKE @Dni";
+        private const string SQLSearchId = "SELECT * FROM Clientes C INNER JOIN Usuarios U ON C.IdUsuario = U.IdUsuario WHERE U.IdUsuario LIKE @IdUsuario";
+        private const string SQLInsert = "INSERT INTO Clientes (IdCliente, IdUsuario, Dni) VALUES ((SELECT MAX(IdCliente) + 1 FROM Clientes) ,@IdUsuario, @Dni)";
+        private const string SQLUpdate = "UPDATE Clientes SET IdUsuario=@IdUsuario, Dni = @Dni WHERE IdCliente = @IdCliente";
+        private const string SQLDelete = "DELETE FROM Clientes WHERE IdCliente = @IdCliente";
 
         private daConexion connectionDA = new daConexion();
 
@@ -38,10 +38,10 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, ClienteEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.Int);
+            parameter = command.Parameters.Add("@IdUsuario", SqlDbType.Int);
             parameter.Value = entidad.IdUsuario;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Dni", SqlDbType.VarChar);
             parameter.Value = entidad.Dni;
         }
 
@@ -51,7 +51,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdCliente", SqlDbType.Int);
                 paramId.Value = entidad.IdCliente;
 
                 switch(sqlCommandType) {
@@ -92,8 +92,8 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchId, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
-                command.Parameters[0].Value = id;
+                command.Parameters.Add("@IdUsuario", SqlDbType.VarChar);
+                command.Parameters[0].Value = "%" + id + "%";
                 dr = command.ExecuteReader();
 
                 usuario = new ClienteEntity();
@@ -150,7 +150,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchAll, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Dni", SqlDbType.VarChar);
                 command.Parameters[0].Value = "%" + dni + "%";
                 dr = command.ExecuteReader();
 

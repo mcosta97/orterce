@@ -9,12 +9,12 @@ using static ProyectoTallerData.daComun;
 namespace ProyectoTallerData {
     public class daUsuario {
         private const string SQLSearchByPrimaryKey = "SELECT * FROM Usuarios WHERE IdUsuario = @IdUsuario";
-        private const string SQLSearch = "SELECT * FROM Usuarios WHERE Apellido LIKE ? AND Nombre LIKE ?";
-        private const string SQLValidate = "SELECT * FROM Usuarios WHERE Usuario=? AND Clave=?";
-        private const string SQLInsert = "INSERT INTO Usuarios (Usuario, Clave, Apellido, Nombre, Mail) VALUES (?, ?, ?, ?, ?)";
-        private const string SQLUpdate = "UPDATE Usuarios SET Usuario = ?, Clave = ?, Apellido = ?, Nombre = ?, Mail = ? WHERE IdUsuario = ?";
-        private const string SQLDelete = "DELETE FROM Usuarios WHERE IdUsuario = ?";
-        private const string SQLMailUsuario = "SELECT * FROM Usuarios WHERE Usuario = ?";
+        private const string SQLSearch = "SELECT * FROM Usuarios WHERE Apellido LIKE @Apellido AND Nombre LIKE @Nombre";
+        private const string SQLValidate = "SELECT * FROM Usuarios WHERE Usuario=@Usuario AND Clave=@Clave";
+        private const string SQLInsert = "INSERT INTO Usuarios (IdUsuario, Usuario, Clave, Apellido, Nombre, Mail) VALUES ((SELECT MAX(IdUsuario) + 1 FROM Usuarios) ,@Usuario, @Clave, @Apellido, @Nombre, @Mail)";
+        private const string SQLUpdate = "UPDATE Usuarios SET Usuario = @Usuario, Clave = @Clave, Apellido = @Apellido, Nombre = @Nombre, Mail = @Mail WHERE IdUsuario = @IdUsuario";
+        private const string SQLDelete = "DELETE FROM Usuarios WHERE IdUsuario = @IdUsuario";
+        private const string SQLMailUsuario = "SELECT * FROM Usuarios WHERE Usuario = @Usuario";
 
         private daConexion connectionDA = new daConexion();
 
@@ -39,19 +39,19 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, UsuarioEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Usuario", SqlDbType.VarChar);
             parameter.Value = entidad.Usuario;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Clave", SqlDbType.VarChar);
             parameter.Value = entidad.Clave;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Apellido", SqlDbType.VarChar);
             parameter.Value = entidad.Apellido;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Nombre", SqlDbType.VarChar);
             parameter.Value = entidad.Nombre;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Mail", SqlDbType.VarChar);
 
             if(entidad.TieneEmail())
                 parameter.Value = entidad.Mail;
@@ -65,7 +65,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdUsuario", SqlDbType.Int);
                 paramId.Value = entidad.IdUsuario;
 
                 switch(sqlCommandType) {
@@ -105,7 +105,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLMailUsuario, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Usuario", SqlDbType.VarChar);
                 command.Parameters[0].Value = usuario;
                 dr = command.ExecuteReader();
 
@@ -170,10 +170,10 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearch, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Apellido", SqlDbType.VarChar);
                 command.Parameters[0].Value = "%" + apellido + "%";
 
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Nombre", SqlDbType.VarChar);
                 command.Parameters[1].Value = "%" + nombre + "%";
 
                 dr = command.ExecuteReader();
@@ -205,10 +205,10 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection) connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLValidate, connection);
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Usuario", SqlDbType.VarChar);
                 command.Parameters[0].Value = user;
 
-                command.Parameters.Add("?", SqlDbType.VarChar);
+                command.Parameters.Add("@Clave", SqlDbType.VarChar);
                 command.Parameters[1].Value = pass;
                 dr = command.ExecuteReader();
 

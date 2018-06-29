@@ -12,11 +12,11 @@ using static ProyectoTallerData.daComun;
 namespace ProyectoTallerData {
     public class daCategoria {
         private const string SQLSearch = "SELECT * FROM Categorias";
-        private const string SQLSearchId = "SELECT * FROM Categorias WHERE IdCategoria = ?";
-        private const string SQLSearchNombre = "SELECT * FROM Categorias WHERE Nombre = ?";
-        private const string SQLInsert = "INSERT INTO Categorias (Nombre) VALUES (?)";
-        private const string SQLUpdate = "UPDATE Categorias SET Nombre = ? WHERE IdCategoria = ?";
-        private const string SQLDelete = "DELETE FROM Categorias WHERE IdCategoria = ?";
+        private const string SQLSearchId = "SELECT * FROM Categorias WHERE IdCategoria = @IdCategoria";
+        private const string SQLSearchNombre = "SELECT * FROM Categorias WHERE Nombre = @Nombre";
+        private const string SQLInsert = "INSERT INTO Categorias (IdCategoria, Nombre) VALUES ((SELECT MAX(IdCategoria) + 1 FROM Categorias), @Nombre)";
+        private const string SQLUpdate = "UPDATE Categorias SET Nombre = @Nombre WHERE IdCategoria = @IdCategoria";
+        private const string SQLDelete = "DELETE FROM Categorias WHERE IdCategoria = @IdCategoria";
 
         private daConexion connectionDA = new daConexion();
 
@@ -32,7 +32,7 @@ namespace ProyectoTallerData {
         private void CrearParametros(SqlCommand command, CategoriaEntity entidad) {
             SqlParameter parameter = null;
 
-            parameter = command.Parameters.Add("?", SqlDbType.VarChar);
+            parameter = command.Parameters.Add("@Nombre", SqlDbType.VarChar);
             parameter.Value = entidad.Nombre;
         }
 
@@ -42,7 +42,7 @@ namespace ProyectoTallerData {
 
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdCategoria", SqlDbType.Int);
                 paramId.Value = entidad.IdCategoria;
 
                 switch (sqlCommandType) {
@@ -97,7 +97,7 @@ namespace ProyectoTallerData {
             try {
                 connection = (SqlConnection)connectionDA.GetOpenedConnection();
                 command = new SqlCommand(SQLSearchId, connection);
-                IDataParameter paramId = new SqlParameter("?", SqlDbType.Int);
+                IDataParameter paramId = new SqlParameter("@IdCategoria", SqlDbType.Int);
                 paramId.Value = id;
                 command.Parameters.Add(paramId);
                 dr = command.ExecuteReader();
